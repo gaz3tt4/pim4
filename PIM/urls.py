@@ -20,5 +20,5 @@ from django.urls import path
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('clientes/', views.index, name='index')
+    path('clientes/', views.index, name='index') # rota aponta para o methodo index no arquivo views / clientes
 ]
