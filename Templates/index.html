@@ -36,7 +36,7 @@
     <script>
       // Captura o botão pelo ID e adiciona o evento de clique
       document.getElementById('btnClientes').addEventListener('click', function () {
-        window.location.href = 'http://127.0.0.1:5500/Templates/clientes.html';
+        window.location.href = "{% url 'showClientes' %}";
       });
     </script>
 

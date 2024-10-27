@@ -28,6 +28,16 @@
                 <div class="col-4" _msttexthash="30277" _msthash="291">Documento</div>
                 <div class="col-3" _msttexthash="30277" _msthash="292">Cidade</div>
             </div>
+            <div>
+                {% for cliente in cliente %}
+                <div class="row">
+                    <div class="col-1" _msttexthash="30277" _msthash="293">{{ cliente.Id }}</div>
+                    <div class="col-4" _msttexthash="30277" _msthash="294">{{ cliente.nome }}</div>
+                    <div class="col-4" _msttexthash="30277" _msthash="295">{{ cliente.Doc }}</div>
+                    <div class="col-3" _msttexthash="30277" _msthash="296">{{ cliente.Cidade }}</div>
+                </div>
+                {% endfor %}
+            </div>
             
             
             <div class="col-1">
