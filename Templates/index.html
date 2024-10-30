@@ -40,7 +40,7 @@
       });
     </script>
 
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+    <button id='btnFornecedores' type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
       <br>
       <p>Fornecedor</p> <!-- Parágrafo -->
       <br> <!-- Quebra de linha -->
@@ -49,6 +49,14 @@
 
     <br>
     <br>
+
+    <script>
+      // Captura o botão pelo ID e adiciona o evento de clique
+      document.getElementById('btnFornecedores').addEventListener('click', function () {
+        window.location.href = "{% url 'showClientes' %}";
+      });
+    </script>
+
 
     <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
       <br>
