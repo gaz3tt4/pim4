@@ -23,50 +23,53 @@
     </div>
 
     <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+        
+        <form class="row g-3"  method="post" action="{% url 'store' %}">
 
-        <form class="row g-3">
+            {% csrf_token %}
+            
             <div class="col-md-6">
                 <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome</label>
-                <input type="Nome" class="form-control" id="inputNome4">
+                <input type="text" class="form-control" id="inputNome4" name="Nome">
             </div>
             <div class="col-md-6">
                 <label for="inputDoc4" class="form-label" _msttexthash="58318" _msthash="211">Cpf/Cnpj</label>
-                <input type="Doc" class="form-control" id="inputDoc4">
+                <input type="text" class="form-control" id="inputDoc4" nome="Doc">
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label" _msttexthash="133848" _msthash="212">Endereço</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="Rua Principal, 1234"
-                    _mstplaceholder="126607" _msthash="213">
+                    _mstplaceholder="126607" _msthash="213" name="Endereco">
             </div>
             <div class="col-md-6">
                 <label for="inputCity" class="form-label" _msttexthash="71383" _msthash="216">Cidade</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input type="text" class="form-control" id="inputCity" name="Cidade">
             </div>
             <div class="col-md-4">
                 <label for="inputState" class="form-label" _msttexthash="76037" _msthash="217">Estado</label>
                 <select id="inputState" class="form-select">
-                    <option selected="" _msttexthash="101647" _msthash="218">Escolher...</option>
-                    <option _msttexthash="14352" _msthash="219">...</option>
+                    <option selected="" _msttexthash="101647" _msthash="218" name="Estado">Escolher...</option>
+                    <option _msttexthash="14352" _msthash="219" type="text" value="SP">SP</option>
                 </select>
             </div>
             <div class="col-12">
                 <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Telefone</label>
                 <input type="text" class="form-control" id="inputTel2" placeholder="(00)0 0000-0000"
-                    _mstplaceholder="597987" _msthash="215">
+                    _mstplaceholder="597987" _msthash="215" name="Telefone">
             </div>
 
             <div class="col-md-2">
                 <label for="inputEmail" class="form-label" _msttexthash="41496" _msthash="220">Email</label>
                 <input type="text" class="form-control" id="inputEmail" placeholder="email@email.com"
-                    _mstplaceholder="597987" _msthash="215">
-            </div>
+                    _mstplaceholder="597987" _msthash="215" name="Email">
+            <!-- </div>
             <div class="col-12">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gridCheck">
                     <label class="form-check-label" for="gridCheck" _msttexthash="143416" _msthash="221"> Confira-me
                     </label>
                 </div>
-            </div>
+            </div> -->
             <div class="col-12">
                 <button type="submit" class="btn btn-primary" _msttexthash="77766" _msthash="222">Salvar</button>
                 
@@ -75,7 +78,7 @@
                 <script>
                     // Captura o botão pelo ID e adiciona o evento de clique
                     document.getElementById('btnVoltar').addEventListener('click', function () {
-                      window.location.href = 'http://127.0.0.1:5500/Templates/index.html';
+                      window.location.href="{% url 'showClientes' %}";
                     });
                   </script>
 

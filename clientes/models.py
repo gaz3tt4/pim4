@@ -1,14 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class clientes(models.Model):
-    nome = models.CharField(max_length=100)
-    Doc = models.CharField(max_length=20)
-    email = models.EmailField(max_length=100)
-    telefone = models.CharField(max_length=20)
-    data_nascimento = models.DateField()
-    cep = models.CharField(max_length=20)
-    logradouro = models.CharField(max_length=100)
-    bairro = models.CharField(max_length=100)
-    cidade = models.CharField(max_length=100)
-    estado = models.CharField(max_length=30)
+class Cliente(models.Model):
+    cli_in_id = models.AutoField(primary_key=True)
+    cli_st_nome = models.CharField(max_length=50)
+    cli_ch_tipo = models.CharField(max_length=1)
+    cli_st_doc = models.CharField(max_length=18)
+    cli_st_endereco = models.CharField(max_length=150, null=True, blank=True)
+    cli_st_cidade = models.CharField(max_length=50, null=True, blank=True)
+    cli_st_estado = models.CharField(max_length=2, null=True, blank=True)
+    cli_st_telefone = models.CharField(max_length=20, null=True, blank=True)
+    cli_st_email = models.CharField(max_length=50, null=True, blank=True)
