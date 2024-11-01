@@ -35,4 +35,12 @@ def store(request):
        cliente.cli_st_telefone = request.POST.get('Telefone'),
        cliente.cli_st_email = request.POST.get('Email')
        cliente.save()
-    return render(request, 'showClientes.html')
+    return ShowClientes(request)
+
+# def edit(request, id):
+#     Cliente = Cliente.objects.get(cli_in_id=id)
+#     context = {
+#         'id': 
+#     }
+    
+#     return HttpResponse('edit %s' % id)

@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'PIM.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pim',
+        'NAME': 'PIM',
         'USER': 'root',
-        'PASSWORD': 'carne7539@',
-        'HOST': '127.0.0.1',
+        'PASSWORD': '123',
+        'HOST': '34.42.153.101',
         'PORT': '3306',
     }
     # 'default': {

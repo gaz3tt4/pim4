@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='cliente',
             name='cli_st_estado',
-            field=models.CharField(blank=True, max_length=2, null=True),
+            field=models.CharField(blank=True, max_length=10, null=True),
         ),
     ]
