@@ -34,14 +34,8 @@
     <body class="p-3 m-0 border-0 bd-example m-0 border-0">
       <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg"
         style="width: 200px; height: 104px;">
-
-        
         <p>Clientes</p> <!-- Parágrafo -->
-
       </button>
-
-      
-
       <script>
         // Captura o botão pelo ID e adiciona o evento de clique
         document.getElementById('btnClientes').addEventListener('click', function () {
@@ -51,14 +45,8 @@
 
       <button id='btnFornecedores' type="button" class="btn btn-outline-success btn-lg"
         style="width: 200px; height: 104px;">
-
-        <p>Fornecedor</p> <!-- Parágrafo -->
-
+        <p>Fornecedor</p> 
       </button>
-
-
-
-
       <script>
         // Captura o botão pelo ID e adiciona o evento de clique
         document.getElementById('btnFornecedores').addEventListener('click', function () {
@@ -67,11 +55,16 @@
       </script>
 
 
-      <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
- 
-        <p>Estoque</p> <!-- Parágrafo -->
-  
+      <button id='btnFornecedores' type="button" class="btn btn-outline-success btn-lg"
+        style="width: 200px; height: 104px;">
+        <p>Fornecedor</p> 
       </button>
+      <script>
+        // Captura o botão pelo ID e adiciona o evento de clique
+        document.getElementById('btnFornecedores').addEventListener('click', function () {
+          window.location.href = "{% url 'showClientes' %}";
+        });
+      </script>
 
 
       <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
