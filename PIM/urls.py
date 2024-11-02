@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from clientes import views
+from insumo.views import show_insumos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index), # rota aponta para o methodo index
-    path('', include('clientes.urls')) # rota aponta para o methodo index no arquivo views / clientes
+    path('', include('clientes.urls')), # rota aponta para o methodo index no arquivo views / clientes
+    path('insumos/', show_insumos, name='showInsumos'),
 ]
