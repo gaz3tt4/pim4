@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Formulário de Login</title>
+    <style>
+        /* Estilo para o botão de alternância */
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2c2c2c;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* CSS para .form-container */
+        .form-container {
+            max-width: 350px;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary h-100">
+    <main class="w-100 m-auto form-container">
+        <form id="loginForm">
+            <!-- Caminho relativo para a imagem -->
+            <img src="Templates\assets\images\FarmVille Logo sem fundo.png" class="mb-4" height="150" width="150" alt="FarmVille Logo"/>
+            <h1 class="h3 mb-3 fw-normal">Faça o login!</h1>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInputEmail" placeholder="your-email@gmail.com" required/>
+                <label for="floatingInputEmail">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingInputPassword" placeholder="Senha" required/>
+                <label for="floatingInputPassword">Senha</label>
+            </div>
+
+            <div class="form-check text-start my-3">
+                <input type="checkbox" class="form-check-input" id="flexCheckDefault"/>
+                <label class="form-check-label" for="flexCheckDefault">Me manter conectado</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+        </form>
+
+        <!-- Botão de alternância para mudar o tema -->
+        <div class="mt-4">
+            <label class="theme-toggle">
+                <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+            <span class="ms-2">Modo Claro/Escuro</span>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para alternar o tema e redirecionar -->
+    <script>
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+            document.documentElement.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+        }
+
+        // Adiciona evento de envio ao formulário para redirecionar após o login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário para o servidor
+
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>
