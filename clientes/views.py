@@ -11,13 +11,14 @@ def index(request):
 
 
 def ShowClientes(request):
-    client = Cliente.objects.all().values('cli_in_id', 'cli_st_nome', 'cli_st_doc', 'cli_st_cidade')
+    lista = Cliente.objects.all()
     context = {
-        'clientes': client
+        'cli_in_id': lista,
+        'cli_st_nome': lista,
+        'cli_st_doc': lista,
+        'cli_st_cidade': lista,
     }
-    
-    return render(request, 'showClientes.html', context) 
-
+    return render(request, 'showClientes.html', {'clientes': lista})
 
 def cadastro(request):
     # template = loader.get_template('cadastroClientes.html')
@@ -27,20 +28,33 @@ def cadastro(request):
 def store(request):
     if request.method == 'POST':
        cliente = Cliente()
-       cliente.cli_st_nome = request.POST.get('Nome'),
-       cliente.cli_st_doc = request.POST.get('Doc'),    
-       cliente.cli_st_endereco = request.POST.get('Endereco'),
-       cliente.cli_st_cidade = request.POST.get('Cidade'),
-       cliente.cli_st_estado = request.POST.get('Estado'),
-       cliente.cli_st_telefone = request.POST.get('Telefone'),
+       cliente.cli_st_nome = request.POST.get('Nome')
+       cliente.cli_st_doc = request.POST.get('Doc')   
+       cliente.cli_st_endereco = request.POST.get('Endereco')
+       cliente.cli_st_cidade = request.POST.get('Cidade')
+       cliente.cli_st_estado = request.POST.get('Estado')
+       cliente.cli_st_telefone = request.POST.get('Telefone')
        cliente.cli_st_email = request.POST.get('Email')
        cliente.save()
     return ShowClientes(request)
 
-# def edit(request, id):
-#     Cliente = Cliente.objects.get(cli_in_id=id)
-#     context = {
-#         'id': 
-#     }
+def edit(request, id):
+    Cliente = Cliente.objects.get(cli_in_id=id)
+    context = {
+        'cliente': Cliente
+    }
     
-#     return HttpResponse('edit %s' % id)
+    return HttpResponse('edit %s' % id)
+
+def update(request, id):
+    if request.method == 'POST':
+        cliente = Cliente.objects.get(cli_in_id=id)
+        cliente.cli_st_nome = request.POST.get('Nome')
+        cliente.cli_st_doc = request.POST.get('Doc')   
+        cliente.cli_st_endereco = request.POST.get('Endereco')
+        cliente.cli_st_cidade = request.POST.get('Cidade')
+        cliente.cli_st_estado = request.POST.get('Estado')
+        cliente.cli_st_telefone = request.POST.get('Telefone')
+        cliente.cli_st_email = request.POST.get('Email')
+        cliente.update()
+    return ShowClientes(request)

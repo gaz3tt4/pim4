@@ -10,97 +10,82 @@
 </head>
 
 <body>
-
+  
   <div>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-md">
-      <a class="navbar-brand" href="#">Fazendola</a>
-    </div>
-  </nav>
-  </nav>
+  <div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-md">
+        <a class="navbar-brand" href="#">Fazendola</a>
+        
+      </div>
+    </nav>
+    
+    <br><br><br><br>
+    
+  <div class="btn-group-vertical">
 
-  <br>
+    <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+      <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg"
+        style="width: 200px; height: 104px;">
+
+        
+        <p>Clientes</p> <!-- Parágrafo -->
+
+      </button>
+
+      
+
+      <script>
+        // Captura o botão pelo ID e adiciona o evento de clique
+        document.getElementById('btnClientes').addEventListener('click', function () {
+          window.location.href = "{% url 'showClientes' %}";
+        });
+      </script>
+
+      <button id='btnFornecedores' type="button" class="btn btn-outline-success btn-lg"
+        style="width: 200px; height: 104px;">
+
+        <p>Fornecedor</p> <!-- Parágrafo -->
+
+      </button>
+
+
+
+
+      <script>
+        // Captura o botão pelo ID e adiciona o evento de clique
+        document.getElementById('btnFornecedores').addEventListener('click', function () {
+          window.location.href = "{% url 'showClientes' %}";
+        });
+      </script>
+
+
+      <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+ 
+        <p>Estoque</p> <!-- Parágrafo -->
+  
+      </button>
+
+
+      <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+ 
+        <p>Vendas</p> <!-- Parágrafo -->
+  
+      </button>
+
+
+      <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+        <p>Insumos</p> <!-- Parágrafo -->
+      </button>
+      <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+        <p>Relatórios</p> <!-- Parágrafo -->
+      </button>
+  </div>
 </div>
-
-  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
-    <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-
-      <br>
-      <p>Clientes</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-
-    </button>
-
-    <br><br>
-
-    <script>
-      // Captura o botão pelo ID e adiciona o evento de clique
-      document.getElementById('btnClientes').addEventListener('click', function () {
-        window.location.href = "{% url 'showClientes' %}";
-      });
-    </script>
-
-    <button id='btnFornecedores' type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <br>
-      <p>Fornecedor</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-    </button>
-
-
-    <br>
-    <br>
-
-    <script>
-      // Captura o botão pelo ID e adiciona o evento de clique
-      document.getElementById('btnFornecedores').addEventListener('click', function () {
-        window.location.href = "{% url 'showClientes' %}";
-      });
-    </script>
-
-
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <br>
-      <p>Estoque</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-    </button>
-
-
-    <br>
-    <br>
-
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <br>
-      <p>Vendas</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-    </button>
-
-    <br>
-    <br>
-
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <br>
-      <p>Insumos</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-    </button>
-
-    <br>
-    <br>
-
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <br>
-      <p>Relatórios</p> <!-- Parágrafo -->
-      <br> <!-- Quebra de linha -->
-    </button>
-
-    <br>
-    <br>
-
-    </div>
-  </body>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
