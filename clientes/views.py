@@ -11,8 +11,14 @@ def index(request):
 
 
 def ShowClientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'showClientes.html', {'clientes': clientes})
+    lista = Cliente.objects.all()
+    context = {
+        'cli_in_id': lista,
+        'cli_st_nome': lista,
+        'cli_st_doc': lista,
+        'cli_st_cidade': lista,
+    }
+    return render(request, 'showClientes.html', {'clientes': lista})
 
 def cadastro(request):
     # template = loader.get_template('cadastroClientes.html')
