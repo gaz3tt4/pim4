@@ -24,7 +24,7 @@
 
     <body class="p-3 m-0 border-0 bd-example m-0 border-0">
         
-        <form class="row g-3"  method="post" action="{% url 'store' %}">
+        <form class="row g-3"  method="post" action="{% url 'update' cliente.cli_in_id %}">
 
             {% csrf_token %}
             

@@ -27,6 +27,7 @@
                 <div class="col-4" _msttexthash="30277" _msthash="290">Nome</div>
                 <div class="col-4" _msttexthash="30277" _msthash="291">Documento</div>
                 <div class="col-3" _msttexthash="30277" _msthash="292">Cidade</div>
+                <div class="col-4" _msttexthash="30277" _msthash="293"></div>
             </div>
             <div>
                 {% for cliente in clientes %}
@@ -35,6 +36,14 @@
                     <div class="col-4" _msttexthash="30277" _msthash="294">{{ cliente.cli_st_nome }}</div>
                     <div class="col-4" _msttexthash="30277" _msthash="295">{{ cliente.cli_st_doc }}</div>
                     <div class="col-3" _msttexthash="30277" _msthash="296">{{ cliente.cli_st_cidade }}</div>
+                    <div class="col-4" _msttexthash="30277" _msthash="292">
+                        
+                         <script>
+                            document.getElementById('btnAdd').addEventListener('click', function () {
+                                window.location.href = "{% url 'editClientes' cliente.cli_in_id %}";
+                            });
+                         </script>
+                    </div>
                 </div>
                 {% endfor %}
             </div>

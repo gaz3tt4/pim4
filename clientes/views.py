@@ -27,20 +27,33 @@ def cadastro(request):
 def store(request):
     if request.method == 'POST':
        cliente = Cliente()
-       cliente.cli_st_nome = request.POST.get('Nome'),
-       cliente.cli_st_doc = request.POST.get('Doc'),    
-       cliente.cli_st_endereco = request.POST.get('Endereco'),
-       cliente.cli_st_cidade = request.POST.get('Cidade'),
-       cliente.cli_st_estado = request.POST.get('Estado'),
-       cliente.cli_st_telefone = request.POST.get('Telefone'),
+       cliente.cli_st_nome = request.POST.get('Nome')
+       cliente.cli_st_doc = request.POST.get('Doc')   
+       cliente.cli_st_endereco = request.POST.get('Endereco')
+       cliente.cli_st_cidade = request.POST.get('Cidade')
+       cliente.cli_st_estado = request.POST.get('Estado')
+       cliente.cli_st_telefone = request.POST.get('Telefone')
        cliente.cli_st_email = request.POST.get('Email')
        cliente.save()
     return ShowClientes(request)
 
-# def edit(request, id):
-#     Cliente = Cliente.objects.get(cli_in_id=id)
-#     context = {
-#         'id': 
-#     }
+def edit(request, id):
+    Cliente = Cliente.objects.get(cli_in_id=id)
+    context = {
+        'cliente': Cliente
+    }
     
-#     return HttpResponse('edit %s' % id)
+    return HttpResponse('edit %s' % id)
+
+def update(request, id):
+    if request.method == 'POST':
+        cliente = Cliente.objects.get(cli_in_id=id)
+        cliente.cli_st_nome = request.POST.get('Nome')
+        cliente.cli_st_doc = request.POST.get('Doc')   
+        cliente.cli_st_endereco = request.POST.get('Endereco')
+        cliente.cli_st_cidade = request.POST.get('Cidade')
+        cliente.cli_st_estado = request.POST.get('Estado')
+        cliente.cli_st_telefone = request.POST.get('Telefone')
+        cliente.cli_st_email = request.POST.get('Email')
+        cliente.update()
+    return ShowClientes(request)
