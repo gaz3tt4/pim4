@@ -19,49 +19,6 @@
             </div>
         </nav>
         <br>
-<<<<<<< HEAD
-
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-1" _msttexthash="30277" _msthash="289">Id</div>
-                <div class="col-4" _msttexthash="30277" _msthash="290">Nome</div>
-                <div class="col-4" _msttexthash="30277" _msthash="291">Documento</div>
-                <div class="col-3" _msttexthash="30277" _msthash="292">Cidade</div>
-                <div class="col-4" _msttexthash="30277" _msthash="293"></div>
-            </div>
-            <div>
-                {% for cliente in clientes %}
-                <div class="row">
-                    <div class="col-1" _msttexthash="30277" _msthash="293">l{{ cliente.cli_in_id }}</div>
-                    <div class="col-4" _msttexthash="30277" _msthash="294">{{ cliente.cli_st_nome }}</div>
-                    <div class="col-4" _msttexthash="30277" _msthash="295">{{ cliente.cli_st_doc }}</div>
-                    <div class="col-3" _msttexthash="30277" _msthash="296">{{ cliente.cli_st_cidade }}</div>
-                    <div class="col-4" _msttexthash="30277" _msthash="292">
-                        
-                         <script>
-                            document.getElementById('btnAdd').addEventListener('click', function () {
-                                window.location.href = "{% url 'editClientes' cliente.cli_in_id %}";
-                            });
-                         </script>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            
-            
-            <div class="col-1">
-                <button id="btnAdd" type="button" class="btn btn-primary" _msttexthash="77766"
-                    _msthash="222">Cadastrar</button> 
-
-                <script>
-                    // Captura o botão pelo ID e adiciona o evento de clique
-                    document.getElementById('btnAdd').addEventListener('click', function () {
-                        window.location.href = "{% url 'cadastroClientes' %}";
-                    });
-                </script>
-            </div>
-            
-=======
         <div>
             <table class="table table-sm">
                 <thead>
@@ -70,6 +27,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Documento</th>
                         <th scope="col">Cidade</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +37,7 @@
                             <td>{{ cliente.cli_st_nome }}</td>
                             <td>{{ cliente.cli_st_doc }}</td>
                             <td>{{ cliente.cli_st_cidade }}</td>
+                            <td> <button> <a href="{% url 'editClientes' cliente.cli_in_id %}"> Editar </a></button></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -86,7 +45,7 @@
         </div>
     
     
->>>>>>> f41c769ca8738e0ad8fd3ad5d9d0b72b0485393a
+
 
 
         <div class="col-1">
