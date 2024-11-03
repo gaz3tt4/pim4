@@ -47,20 +47,12 @@
 
     <section class="py-4 container">
         <div class="row">
-            <h3 class="fw-bold p-3">Insumos</h3>
+            <h3 class="fw-bold p-3">Estoque</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'filtroInsumos' %}">
+                <form class="row g-3" method="post" action="{% url 'filtroEstoque' %}">
                     {% csrf_token %}
-                    <div class="col-md-1">
-                        <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
-                        <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Produto </label>
-                        <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
-                        <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Insumo </label>
-                    </div>
-                    <div class="col-md-1">
-                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id</label>
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Produto</label>
                         <input type="text" class="form-control" id="inputNome4" name="Nome">
                     </div>
                     <div class="col-md-2">
@@ -107,13 +99,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for insumo in insumos %}
+                    {% for produto in estoque %}
                     <tr>
-                        <th scope="row">{{ insumo.ins_in_id }}</th>
-                        <td>{{ insumo.ins_in_idFornecedor }}</td>
-                        <td>{{ insumo.ins_st_nome }}</td>
-                        <td>{{ insumo.ins_st_quantidade }}</td>
-                        <td>{{ insumo.ins_st_valor }}</td>
+                        <th scope="row">{{ estoque.est_in_id }}</th>
+                        <td>{{ estoque.est_in_idFornecedor }}</td>
+                        <td>{{ estoque.est_st_nome }}</td>
+                        <td>{{ estoque.est_st_quantidade }}</td>
+                        <td>{{ estoque.est_st_valor }}</td>
                         <td><button id="btnEdit" type="button" class="btn btn-outline-primary"><i
                                     class="fa-solid fa-pen-to-square"></i></button><!-- Botao Editar -->
 
@@ -130,13 +122,13 @@
 
             <script>
                 // Função para redirecionar para a página de edição
-                function editarInsumo(insumoId) {
+                function editarProduto(produtoId) {
                     window.location.href = `/editar/${insumoId}`; // Ajuste a URL de edição conforme necessário
                 }
 
                 // Redirecionamento para cadastro ao clicar no botão "Cadastrar"
                 document.getElementById('btnAdd').addEventListener('click', function () {
-                    window.location.href = "{% url 'cadastroInsumos' %}";
+                    window.location.href = "{% url 'cadastroEstoque' %}";
                 });
             </script>
         </div>
