@@ -42,47 +42,77 @@
         </div>
       </nav>
 
+      <section class="py-4 container">
+        <div class="row">
+            <h3 class="fw-bold p-3">Insumos</h3>
+            <div class="border border-2 rounded p-4">
+                <form class="row g-3" method="post" action="{% url 'filtroInsumos' %}">
+                    {% csrf_token %}
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Insumo</label>
+                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Fornecedor</label>
+                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome</label>
+                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Quantidade</label>
+                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Valor do Kg</label>
+                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                    </div>
+                    <div class ="justify-content-center d-flex">
+                    <div class="col-md-2 ">
+                        <button type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-filter"></i>Filtrar</button><!-- Botao Filtrar -->
+                    </div>
+                    </div>
+                    
+                    
+                </form>
+            </section>
+
         <br>
         <div>
             <table class="table table-sm">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Id Fornecedor</th>
                         <th scope="col">Nome</th>
-                        <th scope="col">Documento</th>
-                        <th scope="col">Cidade</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Valor do Kg</th>
                         <th scope="col">Ações</th> <!-- coluna botão de edição -->
                     </tr>
                 </thead>
                 <tbody>
-                    {% for cliente in clientes %}
+                    {% for insumo in insumos %}
                     <tr>
-                        <th scope="row">{{ cliente.cli_in_id }}</th>
-                        <td>{{ cliente.cli_st_nome }}</td>
-                        <td>{{ cliente.cli_st_doc }}</td>
-                        <td>{{ cliente.cli_st_cidade }}</td>
-                        <td>
-
-                            <!-- Botao Editar -->
-                            <button type="button" class="btn btn-outline-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <th scope="row">{{ insumo.ins_in_id }}</th>
+                        <td>{{ insumo.ins_in_idFornecedor }}</td>
+                        <td>{{ insumo.ins_st_nome }}</td>
+                        <td>{{ insumo.ins_st_quantidade }}</td>
+                        <td>{{ insumo.ins_st_valor }}</td>
+                        <td><button type="button" class="btn btn-outline-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z">
                                     </path>
-                                </svg> Editar
-                            </button>
+                                </svg> Editar</button><!-- Botao Editar -->
 
-
-                            <!-- Botao Excluir -->
                             <button type="button" class="btn btn-outline-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5">
                                     </path>
                                 </svg> Excluir
-                            </button>
+                            </button><!-- Botao Excluir -->
 
                         </td>
                     </tr>
@@ -97,13 +127,13 @@
 
         <script>
             // Função para redirecionar para a página de edição
-            function editarCliente(clienteId) {
-                window.location.href = `/editar/${clienteId}`; // Ajuste a URL de edição conforme necessário
+            function editarInsumo(insumoId) {
+                window.location.href = `/editar/${insumoId}`; // Ajuste a URL de edição conforme necessário
             }
 
             // Redirecionamento para cadastro ao clicar no botão "Cadastrar"
             document.getElementById('btnAdd').addEventListener('click', function () {
-                window.location.href = "{% url 'cadastroClientes' %}";
+                window.location.href = "{% url 'cadastroInsumos' %}";
             });
         </script>
     </div>

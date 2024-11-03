@@ -38,7 +38,7 @@
 
     <section class="py-4 container">
         <div class="row">
-            <h3 class="fw-bold p-3">Cadastro Cliente</h3>
+            <h3 class="fw-bold p-3">Cadastro Fornecedor</h3>
             <div class="border border-2 rounded p-4">
                 <form class="row g-3" method="post" action="{% url 'store' %}">
                     {% csrf_token %}
@@ -127,7 +127,7 @@
                         <script>
                             // Captura o botão pelo ID e adiciona o evento de clique
                             document.getElementById('btnVoltar').addEventListener('click', function () {
-                                window.location.href = "{% url 'showClientes' %}";
+                                window.location.href = "{% url 'showFornecedor' %}";
                             });
                         </script>
 
