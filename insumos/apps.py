@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class InsumoConfig(AppConfig):
+class InsumosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'insumo'
+    name = 'insumos'
