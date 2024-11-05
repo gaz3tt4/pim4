@@ -54,7 +54,7 @@
         <div class="row">
             <h3 class="fw-bold p-3">Editar Cliente</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'updateCliente' cliente.cli_in_id %}">
+                <form class="row g-3" method="post" action="{% url 'store' %}">
                     {% csrf_token %}
                     <div class="col-md-12">
                         <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome</label>
