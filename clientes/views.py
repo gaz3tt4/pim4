@@ -11,14 +11,11 @@ def index(request):
 
 
 def ShowClientes(request):
-    lista = Cliente.objects.all()
+    lista = Cliente.objects.all().values('cli_in_id', 'cli_st_nome', 'cli_st_doc', 'cli_st_cidade')
     context = {
-        'cli_in_id': lista,
-        'cli_st_nome': lista,
-        'cli_st_doc': lista,
-        'cli_st_cidade': lista,
+        'clientes': lista,
     }
-    return render(request, 'showClientes.html', {'clientes': lista})
+    return render(request, 'showClientes.html', context)
 
 def cadastro(request):
     # template = loader.get_template('cadastroClientes.html')
@@ -39,16 +36,16 @@ def store(request):
     return ShowClientes(request)
 
 def edit(request, id):
-    Cliente = Cliente.objects.get(cli_in_id=id)
+    cliente = Cliente.objects.get(cli_in_id=id)
     context = {
-        'cliente': Cliente
+        'cliente': cliente
     }
     
-    return HttpResponse('edit %s' % id)
+    return render(request, 'editClientes.html', context)
 
 def update(request, id):
+    cliente = Cliente.objects.get(cli_in_id=id)
     if request.method == 'POST':
-        cliente = Cliente.objects.get(cli_in_id=id)
         cliente.cli_st_nome = request.POST.get('Nome')
         cliente.cli_st_doc = request.POST.get('Doc')   
         cliente.cli_st_endereco = request.POST.get('Endereco')
