@@ -85,8 +85,8 @@
                     <div class="col-md-4">
 
                         <label for="inputState" class="form-label" _msttexthash="71383" _msthash="216">Estado</label>
-                        <select id="inputState" class="form-select" name="Estado" value="{{ cliente.cli_st_estado }}" required>
-                            <option selected> </option>
+                        <select id="inputState" class="form-select" name="Estado" required>
+                            <option selected value="{{ cliente.cli_st_estado }}"> </option> //carregar o estado atigo nao esta funcionando
                         </select>
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {

@@ -11,9 +11,9 @@ def index(request):
 
 
 def ShowClientes(request):
-    lista = Cliente.objects.all().values('cli_in_id', 'cli_st_nome', 'cli_st_doc', 'cli_st_cidade')
+    clientes = Cliente.objects.all()
     context = {
-        'clientes': lista,
+        'clientes': clientes,
     }
     return render(request, 'showClientes.html', context)
 
@@ -44,14 +44,14 @@ def edit(request, id):
     return render(request, 'editClientes.html', context)
 
 def update(request, id):
-    cliente = Cliente.objects.get(cli_in_id=id)
+    clienteRequest = Cliente.objects.get(cli_in_id=id)
     if request.method == 'POST':
-        cliente.cli_st_nome = request.POST.get('Nome')
-        cliente.cli_st_doc = request.POST.get('Doc')   
-        cliente.cli_st_endereco = request.POST.get('Endereco')
-        cliente.cli_st_cidade = request.POST.get('Cidade')
-        cliente.cli_st_estado = request.POST.get('Estado')
-        cliente.cli_st_telefone = request.POST.get('Telefone')
-        cliente.cli_st_email = request.POST.get('Email')
-        cliente.update()
+        clienteRequest.cli_st_nome = request.POST.get('Nome')
+        clienteRequest.cli_st_doc = request.POST.get('Doc')   
+        clienteRequest.cli_st_endereco = request.POST.get('Endereco')
+        clienteRequest.cli_st_cidade = request.POST.get('Cidade')
+        clienteRequest.cli_st_estado = request.POST.get('Estado')
+        clienteRequest.cli_st_telefone = request.POST.get('Telefone')
+        clienteRequest.cli_st_email = request.POST.get('Email')
+        clienteRequest.update()
     return ShowClientes(request)
