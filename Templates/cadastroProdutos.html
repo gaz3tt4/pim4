@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Insumos</title>
+    <title>Cadastro Produtos</title>
 
   <!-- Referencia para os estilos do CDN Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -53,7 +53,7 @@
     <section class="py-4 container">
 
             <div class="row">
-                <h3 class="fw-bold p-3">Cadastro Insumo</h3>
+                <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
                 <div class="border border-2 rounded p-4">
                     <form class="row g-3" method="post" action="{% url 'store' %}">
                         {% csrf_token %}
@@ -101,7 +101,7 @@
                             <script>
                                 // Captura o botão pelo ID e adiciona o evento de clique
                                 document.getElementById('btnVoltar').addEventListener('click', function () {
-                                    window.location.href = "{% url 'showInsumos' %}";
+                                    window.location.href = "{% url 'showProdutos' %}";
                                 });
                             </script>
 
