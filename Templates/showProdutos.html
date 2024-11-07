@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque</title>
+    <title>Produtos</title>
 
   <!-- Referencia para os estilos do CDN Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -58,9 +58,9 @@
 
     <section class="py-4 container">
         <div class="row">
-            <h3 class="fw-bold p-3">Estoque</h3>
+            <h3 class="fw-bold p-3">Produtos</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'filtroEstoque' %}">
+                <form class="row g-3" method="post" action="{% url 'filtroProdutos' %}">
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Produto</label>
@@ -110,13 +110,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for produto in estoque %}
+                    {% for produto in produto %}
                     <tr>
-                        <th scope="row">{{ estoque.est_in_id }}</th>
-                        <td>{{ estoque.est_in_idFornecedor }}</td>
-                        <td>{{ estoque.est_st_nome }}</td>
-                        <td>{{ estoque.est_st_quantidade }}</td>
-                        <td>{{ estoque.est_st_valor }}</td>
+                        <th scope="row">{{ produto.est_in_id }}</th>
+                        <td>{{ produto.est_in_idFornecedor }}</td>
+                        <td>{{ produto.est_st_nome }}</td>
+                        <td>{{ produto.est_st_quantidade }}</td>
+                        <td>{{ produto.est_st_valor }}</td>
                         <td><button id="btnEdit" type="button" class="btn btn-outline-primary"><i
                                     class="fa-solid fa-pen-to-square"></i></button><!-- Botao Editar -->
 
@@ -139,7 +139,7 @@
 
                 // Redirecionamento para cadastro ao clicar no botão "Cadastrar"
                 document.getElementById('btnAdd').addEventListener('click', function () {
-                    window.location.href = "{% url 'cadastroEstoque' %}";
+                    window.location.href = "{% url 'cadastroProdutos' %}";
                 });
             </script>
         </div>
