@@ -62,15 +62,21 @@
                     </div>
                     <div class="col-md-1">
                         <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
+                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo" value="F">
                         <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Cpf </label>
                         <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
+                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo" value="J">
                         <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Cnpj </label>
                     </div>
+                    {% if Tipo == 'J' %}
+                        <div class=" col-md-11">
+                            <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Documento</label>
+                            <input maxlength="14" type="number" class="form-control" id="inputTel2" _msthash="215" name="Doc" placeholder="00.000.000/0000-00">
+                        </div>
+                    {% endif %}
                     <div class=" col-md-11">
                         <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Documento</label>
-                        <input type="text" class="form-control" id="inputTel2" _msthash="215" name="Doc">
+                        <input maxlength="11" type="number" class="form-control" id="inputTel2" _msthash="215" name="Doc" placeholder="000.000.000-00">
                     </div>
                     <div class="col-md-4">
                         <label for="inputAddress" class="form-label" _msttexthash="133848"

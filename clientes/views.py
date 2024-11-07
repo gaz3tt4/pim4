@@ -27,6 +27,7 @@ def store(request):
     if request.method == 'POST':
        cliente = Cliente()
        cliente.cli_st_nome = request.POST.get('Nome')
+       cliente.cli_st_tipo = request.POST.get('Tipo')
        cliente.cli_st_doc = request.POST.get('Doc')   
        cliente.cli_st_endereco = request.POST.get('Endereco')
        cliente.cli_st_cidade = request.POST.get('Cidade')
@@ -49,6 +50,7 @@ def update(request, pk):
     cliente.Cliente = Cliente
     if request.method == 'POST':
         cliente.cli_st_nome = request.POST.get('Nome')
+        cliente.cli_st_tipo = request.POST.get('Tipo')
         cliente.cli_st_doc = request.POST.get('Doc')   
         cliente.cli_st_endereco = request.POST.get('Endereco')
         cliente.cli_st_cidade = request.POST.get('Cidade')
