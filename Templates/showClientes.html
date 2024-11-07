@@ -76,21 +76,17 @@
                     <td>{{ cliente.cli_st_nome }}</td>
                     <td>{{ cliente.cli_st_doc }}</td>
                     <td>{{ cliente.cli_st_cidade }}</td>
-                    <td><button id="btnEdit" type="button" class="btn btn-outline-primary"><i
-                                class="fa-solid fa-pen-to-square"></i>
+                    <td>
                         <!-- Botao Editar -->
-                        <script>
-                            // Função para redirecionar para a página de edição
-                            document.getElementById('btnEdit').addEventListener('click', function () {
-                                window.location.href = "{% url 'editClientes' cliente.cli_in_id %}"; // Ajuste a URL de edição conforme necessário
-                            });
-                        </script>
-                            
-                            </button>
+                         <a href="{% url 'editClientes' cliente.cli_in_id %}">
+                             <button id="btnEdit" type="button" class="btn btn-outline-primary"><i
+                                     class="fa-solid fa-pen-to-square"></i></button>
+                         </a>
 
                         <!-- Botao Excluir -->
-                        <button type="button" class="btn btn-outline-danger"> <i class="fa-regular fa-trash-can"></i>
-                        </button><!-- Botao Excluir -->
+                         <a href="{% url 'deleteClientes' cliente.cli_in_id %}">
+                             <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-trash-can"></i></button>                             
+                         </a>
 
                     </td>
                 </tr>

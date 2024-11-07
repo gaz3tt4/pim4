@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from clientes.models import Cliente
+from django.shortcuts import get_object_or_404
 # Create your views here.
 # função index retorna a viwe index html pasta template
 
@@ -35,23 +36,29 @@ def store(request):
        cliente.save()
     return ShowClientes(request)
 
-def edit(request, id):
-    cliente = Cliente.objects.get(cli_in_id=id)
+def edit(request, pk):
+    cliente = get_object_or_404(Cliente, cli_in_id=pk)
     context = {
         'cliente': cliente
     }
     
     return render(request, 'editClientes.html', context)
 
-def update(request, id):
-    clienteRequest = Cliente.objects.get(cli_in_id=id)
+def update(request, pk):
+    cliente = get_object_or_404(Cliente, cli_in_id=pk)
+    cliente.Cliente = Cliente
     if request.method == 'POST':
-        clienteRequest.cli_st_nome = request.POST.get('Nome')
-        clienteRequest.cli_st_doc = request.POST.get('Doc')   
-        clienteRequest.cli_st_endereco = request.POST.get('Endereco')
-        clienteRequest.cli_st_cidade = request.POST.get('Cidade')
-        clienteRequest.cli_st_estado = request.POST.get('Estado')
-        clienteRequest.cli_st_telefone = request.POST.get('Telefone')
-        clienteRequest.cli_st_email = request.POST.get('Email')
-        clienteRequest.update()
+        cliente.cli_st_nome = request.POST.get('Nome')
+        cliente.cli_st_doc = request.POST.get('Doc')   
+        cliente.cli_st_endereco = request.POST.get('Endereco')
+        cliente.cli_st_cidade = request.POST.get('Cidade')
+        cliente.cli_st_estado = request.POST.get('Estado')
+        cliente.cli_st_telefone = request.POST.get('Telefone')
+        cliente.cli_st_email = request.POST.get('Email')
+        cliente.update()
+    return ShowClientes(request)
+
+def delete(request, pk):
+    cliente = get_object_or_404(Cliente, cli_in_id=pk)
+    cliente.delete()
     return ShowClientes(request)
