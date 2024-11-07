@@ -55,7 +55,7 @@ def update(request, pk):
         cliente.cli_st_estado = request.POST.get('Estado')
         cliente.cli_st_telefone = request.POST.get('Telefone')
         cliente.cli_st_email = request.POST.get('Email')
-        cliente.update()
+        cliente.save()
     return ShowClientes(request)
 
 def delete(request, pk):
