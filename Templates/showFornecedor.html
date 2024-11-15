@@ -70,19 +70,19 @@
                 <tbody>
                     {% for fornecedor in Fornecedores %}
                     <tr>
-                        <th scope="row">{{ fornecedor.frn_in_id }}</th>
-                        <td>{{ fornecedor.frn_st_nome }}</td>
-                        <td>{{ fornecedor.frn_st_doc }}</td>
-                        <td>{{ fornecedor.frn_st_cidade }}</td>
+                        <th scope="row">{{ fornecedor.fnr_in_id }}</th>
+                        <td>{{ fornecedor.fnr_st_nome }}</td>
+                        <td>{{ fornecedor.fnr_st_doc }}</td>
+                        <td>{{ fornecedor.fnr_st_cidade }}</td>
                     <td>
                         <!-- Botao Editar -->
-                        <a href="{% url 'editFornecedor' fornecedor.frn_in_id %}">
+                        <a href="{% url 'editFornecedor' fornecedor.fnr_in_id %}">
                             <button type="button" class="btn btn-outline-primary"><i
                                 class="fa-solid fa-pen-to-square"></i></button>
                         </a>
 
                         <!-- Botao Excluir -->
-                        <a href="{% url 'deleteFornecedor' fornecedor.frn_in_id %}">
+                        <a href="{% url 'deleteFornecedor' fornecedor.fnr_in_id %}">
                             <button type="button" class="btn btn-outline-danger"> <i class="fa-regular fa-trash-can"></i></button>
                         </a>
 

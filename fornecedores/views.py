@@ -19,10 +19,11 @@ def ShowFornecedor(request):
 def cadastro(request):
     return render(request, 'cadastroFornecedor.html')
 
-def store(request):
+def storeFornecedor(request):
     if request.method == 'POST':
        fornecedor = Fornecedor()
        fornecedor.fnr_st_nome = request.POST.get('Nome')
+       fornecedor.fnr_st_tipo = request.POST.get('Tipo')
        fornecedor.fnr_st_doc = request.POST.get('Doc')   
        fornecedor.fnr_st_endereco = request.POST.get('Endereco')
        fornecedor.fnr_st_cidade = request.POST.get('Cidade')
@@ -54,6 +55,6 @@ def update(request, pk):
     return ShowFornecedor(request)
 
 def delete(request, pk):
-    cliente = get_object_or_404(Fornecedor, frn_in_id=pk)
+    cliente = get_object_or_404(Fornecedor, fnr_in_id=pk)
     cliente.delete()
     return ShowFornecedor(request)
