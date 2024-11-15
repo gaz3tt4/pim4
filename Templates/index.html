@@ -53,12 +53,12 @@
   <div class="btn-group-horizontal text-center">
 
 
-    <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <p>Clientes</p>
+    <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg" 
+    style="width: 200px; height: 104px;">
+      <p>Cliente</p>
     </button>
 
-    <script>
-      // Captura o botão pelo ID e adiciona o evento de clique
+    <script> // Captura o botão pelo ID e adiciona o evento de clique
       document.getElementById('btnClientes').addEventListener('click', function () {
         window.location.href = "{% url 'showClientes' %}";
       });
@@ -72,34 +72,34 @@
     <script>
       // Captura o botão pelo ID e adiciona o evento de clique
       document.getElementById('btnFornecedor').addEventListener('click', function () {
-        window.location.href = "{% url 'showClientes' %}";
+        window.location.href = "{% url 'showFornecedor' %}";
       });
     </script>
 
-    <button id='btnEstoque' type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <p>Estoque</p>
+    <button id='btnProduto' type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+      <p>Produto</p>
     </button>
 
 
     <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
 
-      <p>Vendas</p>
+      <p>Venda</p>
 
     </button>
 
     <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <p>Insumos</p>
+      <p>Plantar</p>
     </button>
 
     <script>
       // Captura o botão pelo ID e adiciona o evento de clique
-      document.getElementById('btnInsumo').addEventListener('click', function () {
+      document.getElementById('btnProduto').addEventListener('click', function () {
         window.location.href = "{% url 'showClientes' %}";
       });
     </script>
 
     <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <p>Relatórios</p>
+      <p>Relatório</p>
     </button>
   </div>
 </section>
