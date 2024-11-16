@@ -68,25 +68,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for fornecedor in fornecedor %}
+                    {% for fornecedor in Fornecedores %}
                     <tr>
-                        <th scope="row">{{ fornecedor.frn_in_id }}</th>
-                        <td>{{ fornecedor.frn_st_nome }}</td>
-                        <td>{{ fornecedor.frn_st_doc }}</td>
-                        <td>{{ fornecedor.frn_st_cidade }}</td>
-                    <td><button type="button" class="btn btn-outline-primary"><i
-                                class="fa-solid fa-pen-to-square"></i></button>
+                        <th scope="row">{{ fornecedor.fnr_in_id }}</th>
+                        <td>{{ fornecedor.fnr_st_nome }}</td>
+                        <td>{{ fornecedor.fnr_st_doc }}</td>
+                        <td>{{ fornecedor.fnr_st_cidade }}</td>
+                    <td>
                         <!-- Botao Editar -->
-                        <script>
-                            // Função para redirecionar para a página de edição
-                            function editarCliente(clienteId) {
-                                window.location.href = "{% url 'cadastroClientes' %}"; // Ajuste a URL de edição conforme necessário
-                            }
-                        </script>
+                        <a href="{% url 'editFornecedor' fornecedor.fnr_in_id %}">
+                            <button type="button" class="btn btn-outline-primary"><i
+                                class="fa-solid fa-pen-to-square"></i></button>
+                        </a>
 
                         <!-- Botao Excluir -->
-                        <button type="button" class="btn btn-outline-danger"> <i class="fa-regular fa-trash-can"></i>
-                        </button><!-- Botao Excluir -->
+                        <a href="{% url 'deleteFornecedor' fornecedor.fnr_in_id %}">
+                            <button type="button" class="btn btn-outline-danger"> <i class="fa-regular fa-trash-can"></i></button>
+                        </a>
 
                     </td>
                     </tr>
@@ -94,7 +92,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
         <button id= "btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
 

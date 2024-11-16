@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from clientes import views
 from login import views
+from clientes import views
+from fornecedores import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
    # path('', views.index), # rota aponta para o methodo index
     path('', include('clientes.urls')), # rota aponta para o methodo index no arquivo views / clientes
     path('', include('login.urls')),
+    path('', include('fornecedores.urls')),
 ]

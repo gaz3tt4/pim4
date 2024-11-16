@@ -20,7 +20,6 @@ def ShowClientes(request):
 
 def cadastro(request):
     # template = loader.get_template('cadastroClientes.html')
-
     return render(request, 'cadastroClientes.html')
 
 def store(request):
