@@ -5,7 +5,6 @@ from fornecedores.models import Fornecedor
 from fornecedores.urls import *
 # Create your views here.
 
-<<<<<<< HEAD
 
 def showfornecedor(request):
     fornecedores = Fornecedor.objects.all()
@@ -13,7 +12,6 @@ def showfornecedor(request):
         'fornecedores': fornecedores,
     }
     return render(request, 'showFornecedor.html', context)
-=======
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
@@ -60,4 +58,3 @@ def update(request, id):
         fornecedor.fnr_st_email = request.POST.get('Email')
         fornecedor.update()
     return ShowFornecedor(request)
->>>>>>> d660563f8be1f7c1ddf114b16908aac74dc2a6c1
