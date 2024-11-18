@@ -110,9 +110,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for produto in produto %}
+                    {% for produto in produtos %}
                     <tr>
-                        <th scope="row">{{ produto.est_in_id }}</th>
+                        <th scope="row">{{produto.est_ch_tipo}}</th>   
+                        <td>{{ produto.est_in_id }}</td>
                         <td>{{ produto.est_in_idFornecedor }}</td>
                         <td>{{ produto.est_st_nome }}</td>
                         <td>{{ produto.est_st_quantidade }}</td>
@@ -133,7 +134,7 @@
 
             <script>
                 // Função para redirecionar para a página de edição
-                function editarProduto(produtoId) {
+                function editProduto(produtoId) {
                     window.location.href = `/editar/${insumoId}`; // Ajuste a URL de edição conforme necessário
                 }
 

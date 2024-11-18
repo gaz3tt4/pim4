@@ -19,6 +19,7 @@ from django.urls import path, include
 from login import views
 from clientes import views
 from fornecedores import views
+from produtos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('', include('clientes.urls')), # rota aponta para o methodo index no arquivo views / clientes
     path('', include('login.urls')),
     path('', include('fornecedores.urls')),
+    path('', include('produtos.urls')),
 ]
