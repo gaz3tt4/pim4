@@ -88,6 +88,12 @@
       });
     </script>
 
+    <script>
+      // Captura o botão pelo ID e adiciona o evento de clique
+      document.getElementById('btnProduto').addEventListener('click', function () {
+        window.location.href = "{% url 'showProdutos' %}";
+      });
+    </script>
 
     <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
 
