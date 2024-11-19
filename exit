@@ -1,0 +1,270 @@
+[33mcommit 5a0da2bcfcb4ca721510bc940e719476b6974f3e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Mon Nov 18 22:04:50 2024 -0300
+
+    Erro migrations corrigido
+
+[33mcommit cadecdcd928fe0a00809b6193fc38fa0675fd056[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Mon Nov 18 21:45:14 2024 -0300
+
+    Er - Redirect Corrigido
+
+[33mcommit 2ec4dad1e4ea60e0a42dfc75f0a4bbc32d200229[m
+Merge: e00819b 3c426c3
+Author: gabriel altobeli <glbeli@outlook.com>
+Date:   Mon Nov 18 13:28:32 2024 -0300
+
+    Merge branch 'main' of https://github.com/gaz3tt4/pim4
+
+[33mcommit e00819b574d3c8d729e6130702e423b225203f6f[m
+Author: gabriel altobeli <glbeli@outlook.com>
+Date:   Sun Nov 17 22:21:10 2024 -0300
+
+    ajustes em view,urls e template de produto
+
+[33mcommit 3c426c33d3de596e113e9bc6f48035ee0661243e[m
+Author: brennoBardella <brennobenebar@hotmail.com>
+Date:   Sun Nov 17 21:13:04 2024 -0300
+
+    Produtos correção
+
+[33mcommit abfb8e0111a827d67daa202f01caebd1c577d402[m
+Author: josepedromidas <jose.fernandes@midassolutions.com.br>
+Date:   Sun Nov 17 19:34:01 2024 -0300
+
+    alterado as config banco de dados
+
+[33mcommit 339ee06aeb5aaf02c39aded388a355b513a252a5[m
+Merge: c25072e 79bcf8c
+Author: Lucas Gazetta <lucas.gazetta@perplan.com.br>
+Date:   Sat Nov 16 10:36:16 2024 -0300
+
+    bug do store ajustado
+
+[33mcommit c25072ef8bce76fc01b8bc6df26399e52e0d7472[m
+Author: Lucas Gazetta <lucas.gazetta@perplan.com.br>
+Date:   Sat Nov 16 10:30:37 2024 -0300
+
+    correção bug view
+
+[33mcommit 79bcf8c8af3e7898755b2f4c21e1cf5be9f66c67[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Fri Nov 15 17:59:11 2024 -0300
+
+    bug em storeFornecedor
+
+[33mcommit 037f31428a3f8dc54eb9f04fb15a20f6fc89e0dc[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Fri Nov 15 14:34:42 2024 -0300
+
+    ajuste login->index e fornecedor metodo completo
+
+[33mcommit f69f126a28e890eee443f8ca0548644cc557fca0[m
+Author: brennoBardella <brennobenebar@hotmail.com>
+Date:   Wed Nov 13 12:39:36 2024 -0300
+
+    Produtos view, urls, models e forms
+
+[33mcommit ff1ec56e66370eb90ccb0ce0f698da8e83e3af7f[m
+Merge: 5df102a d660563
+Author: lucasGazetta <lucas@gazetta>
+Date:   Tue Nov 12 23:20:02 2024 -0300
+
+    criação login
+
+[33mcommit 5df102a42c91ad0d4366556ebddd6026d63d454d[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sun Nov 10 02:11:02 2024 -0300
+
+    criação do app login/ teste da template
+
+[33mcommit d660563f8be1f7c1ddf114b16908aac74dc2a6c1[m
+Author: brennoBardella <brennobenebar@hotmail.com>
+Date:   Thu Nov 7 11:45:10 2024 -0300
+
+    Criação do app produtos
+
+[33mcommit d005036a69ada17ff28eb04fb964861a83efaa49[m
+Author: LucaAgostinho <luca.silva@tracbel.com.br>
+Date:   Thu Nov 7 09:55:25 2024 -0300
+
+    Fornecedores Views e Urls
+
+[33mcommit ae54f2c8b6507ccdd5c24038acd67f57779fc66a[m
+Merge: 235fc9f d9d97be
+Author: lucasGazetta <lucas@gazetta>
+Date:   Thu Nov 7 00:10:14 2024 -0300
+
+    Merge branch 'main' of github.com:gaz3tt4/pim4
+
+[33mcommit 235fc9fc25fea8270fa539c5a7ddb981bad685ca[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Thu Nov 7 00:09:22 2024 -0300
+
+    mod template cadastroClientes
+
+[33mcommit d9d97be641b5696cafba2aa9f1747a88336645a1[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Wed Nov 6 23:59:26 2024 -0300
+
+    criação de templates
+
+[33mcommit b7e280dfc62e9787234b55d9474a009abb9b9b6b[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Wed Nov 6 23:18:03 2024 -0300
+
+    correção metodo update
+
+[33mcommit e37fdf3c514e6d5917acb4cf40e13dabeadef468[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Wed Nov 6 21:46:17 2024 -0300
+
+    manutenção nos metodos/templates -Clientes
+
+[33mcommit 8066e6ec30a2d2a2bc4f8e56ecbb9799ee374455[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Mon Nov 4 23:37:28 2024 -0300
+
+    manutenção dos metodos/templates editClientes
+
+[33mcommit 1bc987a71588732167effe2310f673faee064b19[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Mon Nov 4 23:11:37 2024 -0300
+
+    manutenção dos metodos/templates editClientes
+
+[33mcommit e013b8b7d20b8525d0b0dc77b3e89b27931b176e[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Mon Nov 4 21:22:03 2024 -0300
+
+    Rollback ultimo commit
+
+[33mcommit ac57c6163aa8b29b79fba1e97280368ec1630556[m
+Author: brennoBardella <brennobenebar@hotmail.com>
+Date:   Mon Nov 4 12:14:10 2024 -0300
+
+    ShowInsumos e viws corrigidas
+
+[33mcommit 1188c88176b00029147a27360d25162d425de7d9[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sun Nov 3 18:24:23 2024 -0300
+
+    mtd edit clientes
+
+[33mcommit 550be10282a04b0347d15b3be55d22d5115ab174[m
+Author: Murilo-Alexandre <alexandremurilo2004@gmail.com>
+Date:   Sun Nov 3 17:18:04 2024 -0300
+
+    Upload das imagens pag.login e navbar, e fontes
+
+[33mcommit 04c96989b3a39e425bc037e86923b88f9510b6fb[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sun Nov 3 15:10:19 2024 -0300
+
+    abertura de novas templates
+
+[33mcommit 9c86dc6db6c157fd15ee8360c9171934ad37efe4[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sun Nov 3 13:28:25 2024 -0300
+
+    finalização das templates show, cadstro e edit e produção inserida na index
+
+[33mcommit 3d99c587433f57bb57b289d1e2ca2f75a336e8cb[m
+Author: Murilo-Alexandre <alexandremurilo2004@gmail.com>
+Date:   Sun Nov 3 10:03:43 2024 -0300
+
+    Referencia do site dos icones e criacao da navbar
+
+[33mcommit 83a698280a9934f734fcc493b71d04e19a08ce99[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 19:12:46 2024 -0300
+
+    finalizando ajustes em templates padrão
+
+[33mcommit 554230b2ef50d0d0a966ded913434d3d10a8d255[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 18:28:46 2024 -0300
+
+    ajustes em Templates de cadastroClientes e showClientes
+
+[33mcommit b01779009b0b5b72ddb35eca6df38e8ea70d73ff[m
+Merge: 3c6bddb c2d6683
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 15:51:33 2024 -0300
+
+    Merge branch 'main' of https://github.com/gaz3tt4/pim4
+
+[33mcommit 3c6bddb7e11a3801911a8dcfb5e8f7b349abcaeb[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 15:49:28 2024 -0300
+
+    ajustes em cadastroClientes e showClientes
+
+[33mcommit 01a001156c2e2edfd4e25ae11c86f4f1cd99e8b4[m
+Merge: 3601de1 b8387ef
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 15:48:35 2024 -0300
+
+    ajustes em cadastroClientes e showClientes
+
+[33mcommit c2d668372bd33a368a0173883acfd75ac12dc521[m
+Author: Murilo-Alexandre <alexandremurilo2004@gmail.com>
+Date:   Sat Nov 2 15:03:49 2024 -0300
+
+    Botoes editar e excluir na tela show clientes
+
+[33mcommit 3601de1f125198eba8b7e5e1f89a8b54d92ba469[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 13:06:22 2024 -0300
+
+    criado o campo ações em showclientes
+
+[33mcommit b8387ef5413cf627ed1e78f427694189e4d20605[m
+Merge: a29c812 82e4e69
+Author: Murilo-Alexandre <alexandremurilo2004@gmail.com>
+Date:   Sat Nov 2 13:00:20 2024 -0300
+
+    Criaçao da tela de Login
+     Merge branch 'main' of https://github.com/gaz3tt4/pim4
+
+[33mcommit 82e4e694f822de492e169b0435b0159f54e3c540[m
+Merge: b1175f6 f41c769
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sat Nov 2 12:51:38 2024 -0300
+
+    comita pfv
+
+[33mcommit a29c812c493ae4a135ee140930693e1356623bfb[m
+Author: Murilo-Alexandre <alexandremurilo2004@gmail.com>
+Date:   Sat Nov 2 12:50:20 2024 -0300
+
+    Adiçao tela de Login
+
+[33mcommit b1175f6689ba84e32ddb186cb4a48e22c2e89771[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sat Nov 2 12:48:21 2024 -0300
+
+    teste
+
+[33mcommit f41c769ca8738e0ad8fd3ad5d9d0b72b0485393a[m
+Author: GabrielAltobeli <glbeli@outlook.com>
+Date:   Sat Nov 2 12:41:33 2024 -0300
+
+    ajuste no template showClientes
+
+[33mcommit 3fe5936b282aba26af6abcf997bc97740a291724[m
+Merge: d96bef1 79fede0
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sat Nov 2 12:39:22 2024 -0300
+
+    Merge branch 'main' of github.com:gaz3tt4/pim4
+
+[33mcommit d96bef1847852aab0ff475dc093bf257b9f1b677[m
+Author: lucasGazetta <lucas@gazetta>
+Date:   Sat Nov 2 12:19:47 2024 -0300
+
+    resolução do bug tela de clientes/criação edit
+
+[33mcommit 0cbcf18ab1a5c064f6e637bcb88d5d44f160a649[m
+Author: Gabr
