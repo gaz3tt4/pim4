@@ -3,11 +3,12 @@ from django.http import HttpResponse
 from django.template import loader
 from fornecedores.models import Fornecedor
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 # Create your views here.
 
-def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+# def index(request):
+#     template = loader.get_template('index.html')
+#     return HttpResponse(template.render())
 
 def ShowFornecedor(request):
     fornecedores = Fornecedor.objects.all()
@@ -31,7 +32,7 @@ def storeFornecedor(request):
        fornecedor.fnr_st_telefone = request.POST.get('Telefone')
        fornecedor.fnr_st_email = request.POST.get('Email')
        fornecedor.save()
-    return ShowFornecedor(request)
+    return redirect('showFornecedor')
 
 def edit(request, pk):
     fornecedor = get_object_or_404(Fornecedor, fnr_in_id=pk)
@@ -52,7 +53,7 @@ def update(request, pk):
         fornecedor.fnr_st_telefone = request.POST.get('Telefone')
         fornecedor.fnr_st_email = request.POST.get('Email')
         fornecedor.save()
-    return ShowFornecedor(request)
+    return redirect('showFornecedor')
 
 def delete(request, pk):
     cliente = get_object_or_404(Fornecedor, fnr_in_id=pk)

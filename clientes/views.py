@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from clientes.models import Cliente
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 # Create your views here.
 # função index retorna a viwe index html pasta template
 
@@ -18,11 +19,11 @@ def ShowClientes(request):
     }
     return render(request, 'showClientes.html', context)
 
-def cadastro(request):
+def cadastroClientes(request):
     # template = loader.get_template('cadastroClientes.html')
     return render(request, 'cadastroClientes.html')
 
-def store(request):
+def storeCliente(request):
     if request.method == 'POST':
        cliente = Cliente()
        cliente.cli_st_nome = request.POST.get('Nome')
@@ -34,9 +35,9 @@ def store(request):
        cliente.cli_st_telefone = request.POST.get('Telefone')
        cliente.cli_st_email = request.POST.get('Email')
        cliente.save()
-    return ShowClientes(request)
+    return redirect('showClientes')
 
-def edit(request, pk):
+def editCliente(request, pk):
     cliente = get_object_or_404(Cliente, cli_in_id=pk)
     context = {
         'cliente': cliente
@@ -44,7 +45,7 @@ def edit(request, pk):
     
     return render(request, 'editClientes.html', context)
 
-def update(request, pk):
+def updateCliente(request, pk):
     cliente = get_object_or_404(Cliente, cli_in_id=pk)
     cliente.Cliente = Cliente
     if request.method == 'POST':
@@ -57,9 +58,9 @@ def update(request, pk):
         cliente.cli_st_telefone = request.POST.get('Telefone')
         cliente.cli_st_email = request.POST.get('Email')
         cliente.save()
-    return ShowClientes(request)
+    return redirect('showClientes')
 
-def delete(request, pk):
+def deleteCliente(request, pk):
     cliente = get_object_or_404(Cliente, cli_in_id=pk)
     cliente.delete()
     return ShowClientes(request)
