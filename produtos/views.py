@@ -1,17 +1,17 @@
 from unittest import loader
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Produto
-from fornecedores.models import Fornecedor
+from .models import Produto, Compra
 from django.http import HttpResponse
+from fornecedores.models import Fornecedor
 
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
 
 def ShowProdutos(request):
-    produtos = Produto.objects.all()
+    produto = Produto.objects.all()
     context = {
-        'produtos': produtos,
+        'produtos': produto,
     }
     return render(request, 'showProdutos.html', context)
 
@@ -22,7 +22,7 @@ def cadastroProdutos(request):
 def storeProdutos(request):
     if request.method == 'POST':
        produto = Produto()
-       produto.est_ch_tipo = request.POST.get('Tipo')
+       produto.est_ch_tipo = 'I'
        produto.est_in_id = request.POST.get('Id_Produto')
        produto.est_st_nome = request.POST.get('Nome') 
        produto.save()
@@ -39,7 +39,7 @@ def updateProdutos(request, pk):
     produto = get_object_or_404(Produto, est_in_id=pk)
     produto.Produto = Produto
     if request.method == 'POST':
-        produto.est_ch_tipo = request.POST.get('Tipo')
+        produto.est_ch_tipo = 'I'
         produto.est_in_id = request.POST.get('Id_Produto')
         produto.nome = request.POST.get('Nome')
         produto.preco = request.POST.get('Preco')
@@ -53,9 +53,26 @@ def deleteProdutos(request, pk):
     produto.delete()
     return redirect('showProdutos')
 
-def FiltrarProdutos(request):
-    produtos = Produto.objects.filter()
-    context = {
-        'produtos': produtos,
-    }
-    return render(request, 'showProdutos.html', context)
+# def FiltrarProdutos(request):
+#     produtos = Produto.objects.filter()
+#     context = {
+#         'produtos': produtos,
+#     }
+#     return render(request, 'showProdutos.html', context)
+
+def buyInsumos(request,pk):
+    produto = get_object_or_404(Produto, est_in_id=pk)
+    fornecedor = get_object_or_404(Fornecedor, fnr_in_id=for_id)
+    Compra = Compra()
+    produto.Produto = Produto
+    if request.method == 'POST':
+        produto.est_ch_tipo = 'I'
+        for_id = request.POST.get('Id_Fornecedor')
+        
+        produto.est_in_id = request.POST.get('Id_Produto')
+        produto.nome = request.POST.get('Nome')
+        produto.preco = request.POST.get('Preco')
+        produto.quantidade = request.POST.get('Quantidade')
+        produto.save()
+    
+    return render(request, 'buyInsumos.html')

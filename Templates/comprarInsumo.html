@@ -55,7 +55,7 @@
         <div class="row">
             <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'updateProdutos' produto.est_in_id %}">
+                <form class="row g-3" method="post" action="{% url 'buyInsumo' produto.est_in_id %}">
                     {% csrf_token %}
                     <div class="col-md-1">
                         <br>
