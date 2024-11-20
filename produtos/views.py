@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Produto, Compra
 from django.http import HttpResponse
 from fornecedores.models import Fornecedor
+from datetime import date
+from datetime import datetime
+
 
 def index(request):
     template = loader.get_template('index.html')
@@ -71,14 +74,30 @@ def buyInsumos(request):
 def buyInsumo_store(request):
     # fornecedor = get_object_or_404(Fornecedor, fnr_in_id=for_id)
     if request.method == 'POST':
-        compra = Compra()
-        forn = Fornecedor.objects.get(fnr_in_id= request.POST.get('id_fornecedor'))
-        compra.comp_in_idProduto = request.POST.get('Id_Produto')
-        compra.comp_in_idFornecedor = forn
-        compra.comp_in_quantidade = request.POST.get('Quantidade')
-        compra.comp_vl_valor = request.POST.get('Preco')
-        print(forn)
-        compra.save()
 
-    
+        # Obtém o fornecedor
+        forn_id = request.POST.get('id_fornecedor')
+        forn = Fornecedor.objects.get(fnr_in_id=forn_id)
+
+        # Obtém o produto
+        prod_id = request.POST.get('Produto')
+        produto = Produto.objects.get(est_in_id=prod_id)
+
+        # Obetém e valida a data da compra
+        data_compra = request.POST.get('Data_Compra')
+        if data_compra:
+            data_compra = datetime.strptime(data_compra, '%Y-%m-%d').date()
+
+        # Valida e processa os demais campos
+        quantidade = int(request.POST.get('Quantidade'))
+        preco = float(request.POST.get('Preco'))
+
+        compra = Compra(
+        comp_in_idProduto = produto,
+        comp_in_idFornecedor = forn,
+        comp_in_quantidade = quantidade,
+        comp_vl_valor = preco,
+        comp_dt_compra = data_compra
+        )
+        compra.save()
     return redirect('showProdutos')

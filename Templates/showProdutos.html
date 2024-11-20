@@ -115,6 +115,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>
+                        <th scope="col">Id Produto</th>
                         <th scope="col">Id Fornecedor</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Quantidade</th>
@@ -127,7 +128,7 @@
                     <tr>
                         <th scope="row">{{produto.est_ch_tipo}}</th>   
                         <td>{{ produto.est_in_id }}</td>
-                        <td>{{ produto.est_in_idFornecedor }}</td>
+                        <td>{{ produto.fnr_in_id }}</td>
                         <td>{{ produto.est_st_nome }}</td>
                         <td>{{ produto.est_st_quantidade }}</td>
                         <td>{{ produto.est_st_valor }}</td>
@@ -145,10 +146,16 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+                <button id="btnCompra" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
+                <script>
+                    document.getElementById('btnCompra').addEventListener('click', function () {
+                        window.location.href = "{% url 'comprarInsumo' %}";
+                    });
+
+                </script>
+
             <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->
-            <a href="{% url 'comprarInsumo'%}">
-                <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
-            </a>
             <script>
                 // // Função para redirecionar para a página de edição
                 // function editProduto(produtoId) {

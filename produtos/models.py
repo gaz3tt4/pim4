@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Produto(models.Model):
     est_in_id = models.AutoField(primary_key=True)  # ID do Produto
@@ -16,4 +17,4 @@ class Compra(models.Model):
     comp_in_idProduto = models.ForeignKey('produtos.Produto', on_delete=models.CASCADE)
     comp_in_quantidade = models.IntegerField()
     comp_vl_valor = models.DecimalField(decimal_places=2, max_digits= 10)
-    comp_dt_compra = models.DateField()
+    comp_dt_compra = models.DateField(default=date.today)

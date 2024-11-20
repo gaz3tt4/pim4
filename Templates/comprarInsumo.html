@@ -59,9 +59,9 @@
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label">Fornecedor</label>
-                        <select name="id_fornecedor" class="form-control" id="slectProd">
+                        <select name="id_fornecedor" class="form-control" id="slectProd" required>
                             {% for fornecedor in fornecedores %}
-                            <option value="{{ fornecedor.fnr_id_fornecedor }}">{{ fornecedor.fnr_st_nome }}</option>
+                            <option value="{{ fornecedor.fnr_in_id }}">{{ fornecedor.fnr_st_nome }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -85,6 +85,12 @@
                         <input type="price" class="form-control" id="inputTel2" name="Preco"
                             placeholder="R$10,00" _mstplaceholder="597987" _msthash="215" name="Preco">
                     </div>
+
+                    <div class="col-md-2">
+                        <label for="inputDate" class="form-label">Data da Compra</label>
+                        <input type="date" class="form-control" id="inputDate" name="Data_Compra" required>
+                    </div>
+                    
 
                     <div class="col-12">
                         <button type="submit" class="btn btn-outline-primary" _msttexthash="77766" _msthash="222"><i
