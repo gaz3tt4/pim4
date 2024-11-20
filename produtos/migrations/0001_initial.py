@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('est_in_id', models.AutoField(primary_key=True, serialize=False)),
                 ('est_st_nome', models.CharField(max_length=255)),
+                ('est_ch_tipo', models.CharField(max_length=1)),
                 ('est_st_quantidade', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('est_st_valor', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('est_in_idFornecedor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fornecedores.fornecedor')),

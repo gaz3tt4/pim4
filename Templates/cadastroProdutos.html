@@ -55,14 +55,14 @@
             <div class="row">
                 <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
                 <div class="border border-2 rounded p-4">
-                    <form class="row g-3" method="post" action="{% url 'store' %}">
+                    <form class="row g-3" method="post" action="{% url 'storeProdutos' %}">
                         {% csrf_token %}
                         <div class="col-md-1">
                             <br>
-                            <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
+                            <input class="form-check-input" type="radio" name="Tipo" id="Tipo" value="P">
                             <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Produto </label>
                             <br>
-                            <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
+                            <input class="form-check-input" type="radio" name="Tipo" id="Tipo" value="I">
                             <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Insumo </label>
                         </div>
                         <div class="col-md-1">
@@ -72,7 +72,7 @@
                         <div class=" col-md-2">
                             <label for="inputTel2" class="form-label" _msttexthash="143598"
                                 _msthash="214">Id_Fornecedor</label>
-                            <input type="text" class="form-control" id="inputTel2" _msthash="215" name="Doc">
+                            <input type="text" class="form-control" id="inputTel2" _msthash="215" name="Id_Fornecedor">
                         </div>
                         <div class="col-md-2">
                             <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome</label>
@@ -81,14 +81,14 @@
                         <div class="col-md-2">
                             <label for="inputAddress" class="form-label" _msttexthash="133848"
                                 _msthash="212">Quantidade</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Rua Principal, 1234"
+                            <input type="text" class="form-control" id="inputAddress" placeholder="10kg"
                                 _mstplaceholder="126607" _msthash="213" name="Endereco">
                         </div>
                         <div class="col-md-2">
                             <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Valor do
                                 Kg</label>
                             <input type="text" class="form-control" id="inputTel2" name="Telefone"
-                                placeholder="Telefone" _mstplaceholder="597987" _msthash="215" name="Telefone">
+                                placeholder="R$10,00" _mstplaceholder="597987" _msthash="215" name="Valor">
                         </div>
 
                         <div class="col-12">

@@ -63,4 +63,4 @@ def updateCliente(request, pk):
 def deleteCliente(request, pk):
     cliente = get_object_or_404(Cliente, cli_in_id=pk)
     cliente.delete()
-    return ShowClientes(request)
+    return redirect('showClientes')

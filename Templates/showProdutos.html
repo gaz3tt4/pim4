@@ -60,7 +60,7 @@
         <div class="row">
             <h3 class="fw-bold p-3">Produtos</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'filtroProdutos' %}">
+                <form class="row g-3" method="post" action="{% url 'store' %}">
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Produto</label>
@@ -118,12 +118,15 @@
                         <td>{{ produto.est_st_nome }}</td>
                         <td>{{ produto.est_st_quantidade }}</td>
                         <td>{{ produto.est_st_valor }}</td>
-                        <td><button id="btnEdit" type="button" class="btn btn-outline-primary"><i
+                        <td>
+                            <a href="{% url 'editarProdutos' produto.est_in_id %}">
+                                <button id="btnEdit" type="button" class="btn btn-outline-primary"><i
                                     class="fa-solid fa-pen-to-square"></i></button><!-- Botao Editar -->
-
-                            <button id="btnDel" type="button" class="btn btn-outline-danger"> <i
-                                    class="fa-regular fa-trash-can"></i> </button><!-- Botao Excluir -->
-
+                            </a>
+                            <a href="{% url 'deleteProdutos' produto.est_in_id %}">
+                                <button id="btnDel" type="button" class="btn btn-outline-danger"> <i
+                                        class="fa-regular fa-trash-can"></i></button><!-- Botao Excluir -->
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -132,7 +135,7 @@
 
             <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
 
-            <script>
+            <!-- <script>
                 // Função para redirecionar para a página de edição
                 function editProduto(produtoId) {
                     window.location.href = `/editar/${insumoId}`; // Ajuste a URL de edição conforme necessário
@@ -142,7 +145,7 @@
                 document.getElementById('btnAdd').addEventListener('click', function () {
                     window.location.href = "{% url 'cadastroProdutos' %}";
                 });
-            </script>
+            </script> -->
         </div>
     </section>
     </div>
