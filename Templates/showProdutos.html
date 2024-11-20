@@ -39,14 +39,17 @@
         color:#ffffff; 
       }
 
-      .red-row { 
-        background-color: red; 
-    } 
-      
-      .green-row { 
-        background-color: green; 
-    }
+      .red-row {
+    background-color: #ff4c4c !important;
+}
 
+.green-row {
+    background-color: #4caf50 !important;
+}
+
+.default-row {
+    background-color: #f0f0f0 !important;
+}
 
     </style>
 </head>
@@ -116,42 +119,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Quantidade</th>
                         <th scope="col">Valor do Kg</th>
-                        <th scope="col">Ações</th> <!-- coluna botão de edição -->
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for produto in produtos %}
-                    <tr class="{% if produto.est_ch_tipo == 'I' %}red-row{% elif produto.est_ch_tipo == 'P' %}green-row{% endif %}">
-                        <th scope="row">{{ produto.est_ch_tipo }}</th>   
-                        <td>{{ produto.est_in_id }}</td>
-                        <td>{{ produto.est_st_nome }}</td>
-                        <td>{{ produto.est_st_quantidade }}</td>
-                        <td>{{ produto.est_st_valor }}</td>
-                        <td>
-                            <a href="{% url 'editarProdutos' produto.est_in_id %}">
-                                <button id="btnEdit" type="button" class="btn btn-outline-primary">
-                                    <i class="fa-solid fa-pen-to-square"></i></button><!-- Botao Editar -->
-                            </a>
-                            <a href="{% url 'deleteProdutos' produto.est_in_id %}">
-                                <button id="btnDel" type="button" class="btn btn-outline-danger"> 
-                                    <i class="fa-regular fa-trash-can"></i></button><!-- Botao Excluir -->
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
-            <!--
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Id Fornecedor</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Valor do Kg</th>
-                        <th scope="col">Ações</th>                                     coluna botão de edição 
+                        <th scope="col">Ações</th>   <!--coluna botão de edição -->
                     </tr>
                 </thead>
                 <tbody>
@@ -166,20 +134,19 @@
                         <td>
                             <a href="{% url 'editarProdutos' produto.est_in_id %}">
                                 <button id="btnEdit" type="button" class="btn btn-outline-primary"><i
-                                    class="fa-solid fa-pen-to-square"></i></button>                            Botao Editar
+                                    class="fa-solid fa-pen-to-square"></i></button> <!--Botao Editar-->
                             </a>
                             <a href="{% url 'deleteProdutos' produto.est_in_id %}">
                                 <button id="btnDel" type="button" class="btn btn-outline-danger"> <i
-                                        class="fa-regular fa-trash-can"></i></button>                                 Botao Excluir
+                                        class="fa-regular fa-trash-can"></i></button> <!--Botao Excluir-->
                             </a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        -->
-            <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
-
+            <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->
+            <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
             <script>
                 // // Função para redirecionar para a página de edição
                 // function editProduto(produtoId) {

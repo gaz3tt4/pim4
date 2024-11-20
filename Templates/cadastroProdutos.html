@@ -51,39 +51,33 @@
 
 
     <section class="py-4 container">
-
-            <div class="row">
-                <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
-                <div class="border border-2 rounded p-4">
-                    <form class="row g-3" method="post" action="{% url 'storeProdutos' %}">
-                        {% csrf_token %}
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome do Insumo</label>
-                            <input type="text" class="form-control" id="inputNome4" name="Nome">
-                        </div>
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-outline-primary" _msttexthash="77766" _msthash="222"><i
-                                    class="fa-regular fa-floppy-disk"></i> Salvar</button>
-
-                            <button id="btnVoltar" type="button" class="btn btn-outline-primary" _msttexthash="77766"
-                                _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-
-                            <script>
-                                // Captura o botão pelo ID e adiciona o evento de clique
-                                document.getElementById('btnVoltar').addEventListener('click', function () {
-                                    window.location.href = "{% url 'showProdutos' %}";
-                                });
-                            </script>
-
-                        </div>
-                    </form>
-                </div>
+        <div class="row">
+            <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
+            <div class="border border-2 rounded p-4">
+                <form class="row g-3" method="post" action="{% url 'storeProdutos' %}">
+                    {% csrf_token %}
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-0"> <!-- Aumentei para 3 para dar mais espaço -->
+                        <label for="inputNome4" class="form-label">Nome do Insumo</label>
+                        <input type="text" class="form-control ms-2" id="inputNome4" name="Nome"> <!-- Usei ms-2 para margem à esquerda -->
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-primary"><i class="fa-regular fa-floppy-disk"></i> Salvar</button>
+                        <button id="btnVoltar" type="button" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+    
+                        <script>
+                            // Captura o botão pelo ID e adiciona o evento de clique
+                            document.getElementById('btnVoltar').addEventListener('click', function () {
+                                window.location.href = "{% url 'showProdutos' %}";
+                            });
+                        </script>
+                    </div>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
