@@ -38,19 +38,6 @@
         font-style: normal;
         color:#ffffff; 
       }
-
-      .red-row {
-    background-color: #ff4c4c !important;
-}
-
-.green-row {
-    background-color: #4caf50 !important;
-}
-
-.default-row {
-    background-color: #f0f0f0 !important;
-}
-
     </style>
 </head>
 
@@ -125,8 +112,14 @@
                 </thead>
                 <tbody>
                     {% for produto in produtos %}
-                    <tr>
-                        <th scope="row">{{produto.est_ch_tipo}}</th>   
+                    <tr 
+                        {% if produto.est_ch_tipo = 'I' %}
+                            class="table-success"
+                        {% elif produto.est_ch_tipo = 'P' %}
+                            class="table-danger"
+                        {% endif %}
+                    >
+                        <th scope="row">{{ produto.est_ch_tipo }}</th>   
                         <td>{{ produto.est_in_id }}</td>
                         <td>{{ produto.fnr_in_id }}</td>
                         <td>{{ produto.est_st_nome }}</td>
@@ -134,12 +127,14 @@
                         <td>{{ produto.est_st_valor }}</td>
                         <td>
                             <a href="{% url 'editarProdutos' produto.est_in_id %}">
-                                <button id="btnEdit" type="button" class="btn btn-outline-primary"><i
-                                    class="fa-solid fa-pen-to-square"></i></button> <!--Botao Editar-->
+                                <button id="btnEdit" type="button" class="btn btn-outline-primary">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button> <!-- Botão Editar -->
                             </a>
                             <a href="{% url 'deleteProdutos' produto.est_in_id %}">
-                                <button id="btnDel" type="button" class="btn btn-outline-danger"> <i
-                                        class="fa-regular fa-trash-can"></i></button> <!--Botao Excluir-->
+                                <button id="btnDel" type="button" class="btn btn-outline-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button> <!-- Botão Excluir -->
                             </a>
                         </td>
                     </tr>
