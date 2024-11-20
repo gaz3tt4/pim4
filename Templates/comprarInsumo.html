@@ -55,36 +55,35 @@
         <div class="row">
             <h3 class="fw-bold p-3">Cadastro de Produtos</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'buyInsumo' produto.est_in_id %}">
+                <form class="row g-3" method="post" action="{% url 'buyInsumo_store'%}">
                     {% csrf_token %}
-                    <div class="col-md-1">
-                        <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
-                        <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Produto </label>
-                        <br>
-                        <input class="form-check-input" type="radio" name="Tipo" id="Tipo">
-                        <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> Insumo </label>
-                    </div>
-                    <div class=" col-md-2">
-                        <label for="inputTel2" class="form-label" _msttexthash="143598"
-                            _msthash="214">Id_Fornecedor</label>
-                        <input type="text" class="form-control" id="inputTel2" _msthash="215" name="Doc">
+                    <div class="col-md-2">
+                        <label for="inputNome4" class="form-label">Fornecedor</label>
+                        <select name="id_fornecedor" class="form-control" id="slectProd">
+                            {% for fornecedor in fornecedores %}
+                            <option value="{{ fornecedor.fnr_id_fornecedor }}">{{ fornecedor.fnr_st_nome }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Nome</label>
-                        <input type="text" class="form-control" id="inputNome4" name="Nome">
+                        <label for="inputNome4" class="form-label">Produto</label>
+                        <select name="Produto" class="form-control" id="slectProd">
+                            {% for produto in produtos %}
+                            <option value="{{ produto.est_in_id }}">{{ produto.est_st_nome }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="col-md-2">
                         <label for="inputAddress" class="form-label" _msttexthash="133848"
                             _msthash="212">Quantidade</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Rua Principal, 1234"
-                            _mstplaceholder="126607" _msthash="213" name="Endereco">
+                        <input type="number" class="form-control" id="inputAddress" placeholder="10kg"
+                            _mstplaceholder="126607" _msthash="213" name="Quantidade">
                     </div>
                     <div class="col-md-2">
                         <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Valor do
                             Kg</label>
-                        <input type="text" class="form-control" id="inputTel2" name="Telefone"
-                            placeholder="Telefone" _mstplaceholder="597987" _msthash="215" name="Telefone">
+                        <input type="price" class="form-control" id="inputTel2" name="Preco"
+                            placeholder="R$10,00" _mstplaceholder="597987" _msthash="215" name="Preco">
                     </div>
 
                     <div class="col-12">

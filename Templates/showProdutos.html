@@ -146,7 +146,9 @@
                 </tbody>
             </table>
             <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->
-            <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
+            <a href="{% url 'comprarInsumo'%}">
+                <button id="btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
+            </a>
             <script>
                 // // Função para redirecionar para a página de edição
                 // function editProduto(produtoId) {

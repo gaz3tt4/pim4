@@ -59,20 +59,26 @@ def deleteProdutos(request, pk):
 #         'produtos': produtos,
 #     }
 #     return render(request, 'showProdutos.html', context)
+def buyInsumos(request):
+    fornecedor = Fornecedor.objects.all()
+    produto = Produto.objects.all()
+    context = {
+        'fornecedores': fornecedor,
+        'produtos': produto
+    }
+    return render(request, 'comprarInsumo.html', context)
 
-def buyInsumos(request,pk):
-    produto = get_object_or_404(Produto, est_in_id=pk)
-    fornecedor = get_object_or_404(Fornecedor, fnr_in_id=for_id)
-    Compra = Compra()
-    produto.Produto = Produto
+def buyInsumo_store(request):
+    # fornecedor = get_object_or_404(Fornecedor, fnr_in_id=for_id)
     if request.method == 'POST':
-        produto.est_ch_tipo = 'I'
-        for_id = request.POST.get('Id_Fornecedor')
-        
-        produto.est_in_id = request.POST.get('Id_Produto')
-        produto.nome = request.POST.get('Nome')
-        produto.preco = request.POST.get('Preco')
-        produto.quantidade = request.POST.get('Quantidade')
-        produto.save()
+        compra = Compra()
+        forn = Fornecedor.objects.get(fnr_in_id= request.POST.get('id_fornecedor'))
+        compra.comp_in_idProduto = request.POST.get('Id_Produto')
+        compra.comp_in_idFornecedor = forn
+        compra.comp_in_quantidade = request.POST.get('Quantidade')
+        compra.comp_vl_valor = request.POST.get('Preco')
+        print(forn)
+        compra.save()
+
     
-    return render(request, 'buyInsumos.html')
+    return redirect('showProdutos')
