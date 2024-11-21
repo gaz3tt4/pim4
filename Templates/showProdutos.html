@@ -58,9 +58,10 @@
 
     <section class="py-4 container">
         <div class="row">
-            <h3 class="fw-bold p-3">Produtos</h3>
+            <h3 class="fw-bold p-3">Estoque</h3>
             <div class="border border-2 rounded p-4">
-                <form class="row g-3" method="post" action="{% url 'store' %}">
+                <form class="row g-3 justify-content-center" method="post" action="{% url 'showProdutos' %}">
+                    
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Produto</label>
@@ -102,42 +103,31 @@
                 <thead>
                     <tr>
                         <th scope="col">Tipo</th>
-                        <th scope="col">Id Produto</th>
-                        <th scope="col">Id Fornecedor</th>
-                        <th scope="col">Nome</th>
+                        <th scope="col">Id Compra</th>
+                        <th scope="col">Nome Produto</th>
                         <th scope="col">Quantidade</th>
                         <th scope="col">Valor do Kg</th>
-                        <th scope="col">Ações</th>   <!--coluna botão de edição -->
+                        <th scope="col">Data da Compra</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for produto in produtos %}
-                    <tr 
-                        {% if produto.est_ch_tipo = 'I' %}
-                            class="table-success"
-                        {% elif produto.est_ch_tipo = 'P' %}
-                            class="table-danger"
-                        {% endif %}
-                    >
-                        <th scope="row">{{ produto.est_ch_tipo }}</th>   
-                        <td>{{ produto.est_in_id }}</td>
-                        <td>{{ produto.fnr_in_id }}</td>
-                        <td>{{ produto.est_st_nome }}</td>
-                        <td>{{ produto.est_st_quantidade }}</td>
-                        <td>{{ produto.est_st_valor }}</td>
-                        <td>
-                            <a href="{% url 'editarProdutos' produto.est_in_id %}">
-                                <button id="btnEdit" type="button" class="btn btn-outline-primary">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button> <!-- Botão Editar -->
-                            </a>
-                            <a href="{% url 'deleteProdutos' produto.est_in_id %}">
-                                <button id="btnDel" type="button" class="btn btn-outline-danger">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                </button> <!-- Botão Excluir -->
-                            </a>
-                        </td>
-                    </tr>
+                    
+                    {% for compra in compras %}
+                        <tr 
+                            {% if compra.comp_in_idProduto.est_ch_tip == 'I' %}
+                                class="table-success"
+                            {% elif compra.comp_in_idProduto.est_ch_tip == 'P' %}
+                                class="table-danger"
+                            {% endif %}
+                        >
+                            <th scope="row">{{ compra.comp_in_idProduto.est_ch_tipo }}</th>                            
+                            <td>{{ compra.comp_in_id }}</td>
+                            <td>{{ compra.comp_in_idProduto.est_st_nome }}</td>
+                            <td>{{ compra.comp_in_quantidade }}</td>
+                            <td>{{ compra.comp_vl_valor }}</td>
+                            <td>{{ compra.comp_dt_compra }}</td>
+                            <td></td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>

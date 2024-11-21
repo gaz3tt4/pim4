@@ -11,10 +11,21 @@ def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
 
+# def ShowProdutos(request):
+#     produto = Produto.objects.all()
+#     context = {
+#         'produtos': produto,
+#     }
+#     return render(request, 'showProdutos.html', context)
+
 def ShowProdutos(request):
-    produto = Produto.objects.all()
+    compras = Compra.objects.all()
+    compras_id_nome = list(compras.values_list('comp_in_idProduto', flat=True))
+    
+    produtos = Produto.objects.filter(est_in_id__in=compras_id_nome).values_list('est_st_nome',  flat=True)
+    produto = Produto.objects.filter(est_in_id__in=compras_id_nome).values_list('est_ch_tipo', flat=True)
     context = {
-        'produtos': produto,
+        'compras': compras
     }
     return render(request, 'showProdutos.html', context)
 
