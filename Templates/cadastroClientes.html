@@ -87,18 +87,8 @@
             </span>
         </div>
     </nav>
-<<<<<<< Updated upstream
 
-    <!-- Tema alternável -->
-    <div class="mt-2 text-end pe-3">
-        <label class="theme-toggle">
-            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-        <span class="ms-2">Modo Claro/Escuro</span>
-    </div>
-=======
-    
+    <!-- Mensagens -->
     {% if messages %}
         <div class="alert-messages">
             {% for message in messages %}
@@ -108,10 +98,16 @@
             {% endfor %}
         </div>
     {% endif %}
-    
->>>>>>> Stashed changes
-    <br>
 
+    <!-- Tema alternável -->
+    <div class="mt-2 text-end pe-3">
+        <label class="theme-toggle">
+            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+            <span class="slider"></span>
+        </label>
+        <span class="ms-2">Modo Claro/Escuro</span>
+    </div>
+    <br>
 
     <section class="py-4 container">
         <div class="row">
