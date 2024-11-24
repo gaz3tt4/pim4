@@ -26,63 +26,14 @@
         font-weight: 400;
         font-style: normal;
         color:#ffffff;
-<<<<<<< HEAD
-=======
-      }
-
-        /* Estilos do tema */
-        .theme-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .theme-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #2c2c2c;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
->>>>>>> a404259c339b2e8f516e1126e215a8cea053fe09
         }
     </style>
 
 </head>
 
 <body>
-<<<<<<< HEAD
+<!-- Navbar -->
 
-=======
-    
-    
-    <!-- Navbar -->
->>>>>>> a404259c339b2e8f516e1126e215a8cea053fe09
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -111,7 +62,6 @@
 
     <section class="py-4 container">
 
-<<<<<<< HEAD
         <div class="row">
             <h3 class="fw-bold p-3">Plantiu</h3>
             <div class="border border-2 rounded p-4">
@@ -119,30 +69,31 @@
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label">ID da Compra</label>
-                        <select name="Produto" class="form-control" id="slectProd">
+                        <select name="Compra" class="form-control" id="slectProd">
                             {% for compra in compras %}
-                            <option value="{{ compra.comp_in_id }}" data-nome = "{{ compra.comp_in_idProduto.est_st_nome }}">{{ compra.comp_in_id }}</option>
+                            <option value="{{ compra.comp_in_id }}" data-nome = "{{ compra.comp_in_idProduto.est_st_nome }}" data-id ="{{ compra.comp_in_idProduto.est_in_id }}" data-qnt ="{{ compra.comp_in_quantidade }}">{{ compra.comp_in_id }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label">Produto</label>
                         <input type="text" class="form-control" id="inputProd" name="Produto" readonly>
+                        <input type="number" class="form-control" id="inputId" name="IdProduto" hidden>
                     </div>
                     <div class="col-md-2">
                         <label for="inputAddress" class="form-label" _msttexthash="133848"
                             _msthash="212">Quantidade</label>
-                        <input type="number" class="form-control" id="inputAddress" placeholder="10kg"
-                            _mstplaceholder="126607" _msthash="213" name="Quantidade">
+                        <input type="number" class="form-control" id="inputQuantidade" placeholder="10kg"
+                            _mstplaceholder="126607" _msthash="213" name="Quantidade"  required>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputDate" class="form-label">Data de Plantiu</label>
-                        <input type="date" class="form-control" id="inputDate" name="Data_Compra" required>
+                        <label for="inputDate" class="form-label">Data de Plantio</label>
+                        <input type="date" class="form-control" id="inputDatePlantio" name="Data_Plantio" required>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputDate" class="form-label">Data da Compra</label>
-                        <input type="date" class="form-control" id="inputDate" name="Data_Compra" required>
+                        <label for="inputDate" class="form-label">Data de Colher</label>
+                        <input type="date" class="form-control" id="inputDateColher" name="Data_Colher" required>
                     </div>
                     
 
@@ -163,47 +114,20 @@
                             document.getElementById('slectProd').addEventListener('change', function () {
                                 const selectedOption = this.options[this.selectedIndex];
                                 const productName = selectedOption.getAttribute('data-nome');
+                                const procuctID = selectedOption.getAttribute('data-id');
+                                const selectQuantidade = selectedOption.getAttribute('data-qnt');
                                 document.getElementById('inputProd').value = productName || '';
+                                document.getElementById('inputId').value = procuctID || '';
+                                document.getElementById('inputQuantidade').max = selectQuantidade || '';
                             });
                             document.getElementById('selectProd').dispatchEvent(new Event('change'));
+
                         </script>
 
                     </div>
                 </form>
             </div>
         </div>
-=======
-    <div>
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Id Insumo</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Data Plantio</th>
-                    <th scope="col">Data de Colheita</th>
-                    <th scope="col">Ações</th> <!-- coluna botão de edição -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for plantar in estoque %}
-                <tr>
-                    <th scope="row">{{ plantar.est_in_id }}</th>
-                    <td>{{ plantar.est_st_nome }}</td>
-                    <td>{{ plantar.plt_dt_planta }}</td>
-                    <td>{{ plantar.plt_dt_colhe }}</td>
-                    <td>
-                        <!-- Botao Editar -->
-                         <a href="{% url 'plantar' plantar.est_in_id %}">
-                             <button id="btnAdd" type="button" class="btn btn-outline-success">
-                                <i class="fa-solid fa-seedling"></i>  Plantar</button>
-                         </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
->>>>>>> a404259c339b2e8f516e1126e215a8cea053fe09
     </section>
 
 

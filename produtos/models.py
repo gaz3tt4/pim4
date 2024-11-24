@@ -24,7 +24,7 @@ class Plantar(models.Model):
     plan_in_id = models.AutoField(primary_key=True)
     plan_in_idProduto = models.ForeignKey('produtos.Produto', on_delete=models.CASCADE)
     plan_in_quantidade = models.IntegerField()
-    plan_dt_plantar = models.DateField(default=date.today)
+    plan_dt_plantar = models.DateField(blank=True, default=date.today)
     plan_dt_colher = models.DateField(null=True, blank=True)
     plan_in_contagem = models.IntegerField(null=True, blank=True)
 
