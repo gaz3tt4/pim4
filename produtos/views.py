@@ -106,62 +106,38 @@ def buyInsumo_store(request):
 def showPlantar(request):
     compras = Compra.objects.all()
     compras_id_nome = list(compras.values_list('comp_in_idProduto', flat=True))
-    
+    #qntComprada = Compra.objects.filter(comp_in_id =request.POST.get('Compra')).values_list('comp_in_quantidade', flat=True).first()
     produtos = Produto.objects.filter(est_in_id__in=compras_id_nome).values_list('est_st_nome',  flat=True)
+    
     context = {
         'compras': compras
     }
     return render(request, 'Plantar.html', context)
 
 
-# def storePlantar(request):
-#     if request.method == 'POST':
-#         qntComprada = Compra.objects.filter(comp_in_idProduto=request.POST.get('Id_Produto')).values_list('comp_in_quantidade', flat=True).first()
-#         qntComprada = int(qntComprada)
-#         qntPlantada = request.POST.get('Quantidade')
-#         if qntPlantada > qntComprada:
-#             return redirect('index', {'error': 'Quantidade de produtos insuficiente'})
-#         plantar = Plantar()
-#         plantar.plan_in_idProduto = request.POST.get('Id_Produto')
-#         plantar.plan_in_quantidade = request.POST.get('Quantidade')
-#         plantar.plan_dt_plantar = request.POST.get('Data_Plantar')
-#         plantar.plan_dt_colher = request.POST.get('Data_Colher')
-#         plantar.save()
-#         print(qntComprada)
-#     return redirect('index', {'massage': 'Produto plantado com sucesso'})
-
-## Metodo com erro de validação -- corrigir pois nao esta conseguindo puxar a quantidade comprada para comparar com a quantidade plantada
-
 def storePlantar(request):
     if request.method == 'POST':
-        # Obter a quantidade comprada do banco
-        qntComprada = Compra.objects.filter(
-            comp_in_idProduto=request.POST.get('Id_Produto')
-        ).values_list('comp_in_quantidade', flat=True).first()
-        
-        # Lidar com None retornado por `.first()`
-        qntComprada = int(qntComprada) if qntComprada is not None else 0
-        
-        # Obter a quantidade plantada do formulário
-        qntPlantada_str = request.POST.get('Quantidade')
-        qntPlantada = int(qntPlantada_str) if qntPlantada_str else 0
-        
-        # Verificar se a quantidade plantada excede a quantidade comprada
-        if qntPlantada > qntComprada:
-            from django.contrib import messages
-            messages.error(request, 'Quantidade de produtos insuficiente.')
-            return redirect('index')
-        
-        # Salvar os dados da plantação
         plantar = Plantar()
-        plantar.plan_in_idProduto = request.POST.get('Id_Produto')
-        plantar.plan_in_quantidade = qntPlantada
-        plantar.plan_dt_plantar = request.POST.get('Data_Plantar')
-        plantar.plan_dt_colher = request.POST.get('Data_Colher')
-        plantar.save()
+        prod= request.POST.get('IdProduto')
+        produto = Produto.objects.get(est_in_id= prod)
+
+
+        quantidade = request.POST.get('Quantidade')
+        quantidade = int(quantidade)
+        if quantidade < 0:
+            return redirect('Plantar', {'message': 'Quantidade inválida'})
+        dataPlantar = request.POST.get('Data_Plantio')
+        dataPlantar = datetime.strptime(dataPlantar, '%Y-%m-%d').date()
+        dataColher= request.POST.get('Data_Colher')
+        dataColher = datetime.strptime(dataColher, '%Y-%m-%d').date()
+        if dataColher < dataPlantar:
+            return redirect('Plantar', {'message': 'Data de colher inválida'})
         
-        from django.contrib import messages
-        messages.success(request, 'Produto plantado com sucesso!')
-        return redirect('index')
-    
-    return redirect('index')
+        plantar.save(
+            plan_in_idProduto = produto,
+            plan_in_quantidade = quantidade,
+            plan_dt_plantar = dataPlantar,
+            plan_dt_colher = dataColher
+        )
+        print(dataColher)
+    return redirect('index', {'massage': 'Produto plantado com sucesso'})
