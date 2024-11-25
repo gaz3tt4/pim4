@@ -6,10 +6,19 @@ from fornecedores.models import Fornecedor
 from datetime import date
 from datetime import datetime
 
-
+# index carrega a template de produção, mostra o progresso da plantação
 def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+    plantas = Plantar.objects.all()
+    plant_in_id = list(plantas.values_list('plan_in_idProduto', flat=True))
+    produtos = Produto.objects.filter(est_in_id__in=plant_in_id).values_list('est_st_nome', flat=True)
+    # dtPlantar = plantas.values_list('plan_dt_plantar', flat=True)
+    # dtColher = plantas.values_list('plan_dt_colher', flat=True)
+    # percentual = percentual(dtPlantar, dtColher)
+
+    context = {
+        'plantas': plantas
+    }
+    return render(request, 'index.html', context)
 
 
 def ShowProdutos(request):
@@ -108,6 +117,7 @@ def showPlantar(request):
     compras_id_nome = list(compras.values_list('comp_in_idProduto', flat=True))
     #qntComprada = Compra.objects.filter(comp_in_id =request.POST.get('Compra')).values_list('comp_in_quantidade', flat=True).first()
     produtos = Produto.objects.filter(est_in_id__in=compras_id_nome).values_list('est_st_nome',  flat=True)
+
     
     context = {
         'compras': compras
@@ -117,11 +127,8 @@ def showPlantar(request):
 
 def storePlantar(request):
     if request.method == 'POST':
-        plantar = Plantar()
-        prod= request.POST.get('IdProduto')
-        produto = Produto.objects.get(est_in_id= prod)
-
-
+        prod_id = request.POST.get('IdProduto')
+        produto = Produto.objects.get(est_in_id=prod_id)
         quantidade = request.POST.get('Quantidade')
         quantidade = int(quantidade)
         if quantidade < 0:
@@ -132,12 +139,28 @@ def storePlantar(request):
         dataColher = datetime.strptime(dataColher, '%Y-%m-%d').date()
         if dataColher < dataPlantar:
             return redirect('Plantar', {'message': 'Data de colher inválida'})
-        
-        plantar.save(
+        prazo = calculaPrazo(dataPlantar, dataColher)
+        planta = Plantar(
             plan_in_idProduto = produto,
             plan_in_quantidade = quantidade,
             plan_dt_plantar = dataPlantar,
-            plan_dt_colher = dataColher
+            plan_dt_colher = dataColher,
+            plan_in_contagem = prazo
         )
-        print(dataColher)
-    return redirect('index', {'massage': 'Produto plantado com sucesso'})
+        planta.save()
+        print(produto)
+    return redirect('index')
+
+def calculaPrazo(DtPlantio, DtColheita):
+    prazo = DtColheita - DtPlantio
+    prazo = int(prazo.days)
+    return prazo
+
+def percentual(DtPlantio, DtColheita):
+    prazo = calculaPrazo(DtPlantio, DtColheita)
+    DtHj = date.today()
+    somaPrazo = DtHj - DtColheita
+    somaPrazo = int(somaPrazo.days)
+    percentual = (somaPrazo - prazo) * 100 
+
+    return percentual

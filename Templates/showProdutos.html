@@ -173,9 +173,9 @@
                     
                     {% for compra in compras %}
                         <tr 
-                            {% if compra.comp_in_idProduto.est_ch_tip = 'I' %}
+                            {% if compra.comp_in_idProduto.est_ch_tip == 'I' %}
                                 class="green-row"
-                            {% elif compra.comp_in_idProduto.est_ch_tip = 'P' %}
+                            {% elif compra.comp_in_idProduto.est_ch_tip == 'P' %}
                                 class="red-row"
                             {% endif %}
                         >
