@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('clientes', '0004_alter_cliente_cli_st_nome'),
-        ('produtos', '0004_alter_compra_comp_dt_compra'),
+        ('produtos', '0004_alter_compra_comp_dt_compra_plantar'),
     ]
 
     operations = [

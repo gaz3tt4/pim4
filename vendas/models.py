@@ -12,8 +12,8 @@ class Vendas(models.Model):
 
 
 class VendasProdutos(models.Model):
-    vend_in_id = models.AutoField(primary_key=True)
-    vend_in_idVenda = models.ForeignKey(Vendas, on_delete=models.CASCADE, related_name="produtos", default=1)
+    vend_in_id_Produto = models.AutoField(primary_key=True)
+    vend_in_idVenda = models.ForeignKey('vendas.Vendas', on_delete=models.CASCADE)
     vend_in_idProduto = models.ForeignKey('produtos.Produto', on_delete=models.CASCADE)
     vend_in_quantidade = models.IntegerField()
     vend_vl_valorProduto = models.DecimalField(decimal_places=2, max_digits=10)

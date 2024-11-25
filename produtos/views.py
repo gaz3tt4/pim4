@@ -1,6 +1,6 @@
 from unittest import loader
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Produto, Compra
+from .models import Produto, Compra, Plantar
 from django.http import HttpResponse
 from fornecedores.models import Fornecedor
 from datetime import date
@@ -11,12 +11,6 @@ def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
 
-# def ShowProdutos(request):
-#     produto = Produto.objects.all()
-#     context = {
-#         'produtos': produto,
-#     }
-#     return render(request, 'showProdutos.html', context)
 
 def ShowProdutos(request):
     compras = Compra.objects.all()
@@ -67,12 +61,6 @@ def deleteProdutos(request, pk):
     produto.delete()
     return redirect('showProdutos')
 
-# def FiltrarProdutos(request):
-#     produtos = Produto.objects.filter()
-#     context = {
-#         'produtos': produtos,
-#     }
-#     return render(request, 'showProdutos.html', context)
 def buyInsumos(request):
     fornecedor = Fornecedor.objects.all()
     produto = Produto.objects.all()
@@ -112,3 +100,44 @@ def buyInsumo_store(request):
         )
         compra.save()
     return redirect('showProdutos')
+
+
+
+def showPlantar(request):
+    compras = Compra.objects.all()
+    compras_id_nome = list(compras.values_list('comp_in_idProduto', flat=True))
+    #qntComprada = Compra.objects.filter(comp_in_id =request.POST.get('Compra')).values_list('comp_in_quantidade', flat=True).first()
+    produtos = Produto.objects.filter(est_in_id__in=compras_id_nome).values_list('est_st_nome',  flat=True)
+    
+    context = {
+        'compras': compras
+    }
+    return render(request, 'Plantar.html', context)
+
+
+def storePlantar(request):
+    if request.method == 'POST':
+        plantar = Plantar()
+        prod= request.POST.get('IdProduto')
+        produto = Produto.objects.get(est_in_id= prod)
+
+
+        quantidade = request.POST.get('Quantidade')
+        quantidade = int(quantidade)
+        if quantidade < 0:
+            return redirect('Plantar', {'message': 'Quantidade inválida'})
+        dataPlantar = request.POST.get('Data_Plantio')
+        dataPlantar = datetime.strptime(dataPlantar, '%Y-%m-%d').date()
+        dataColher= request.POST.get('Data_Colher')
+        dataColher = datetime.strptime(dataColher, '%Y-%m-%d').date()
+        if dataColher < dataPlantar:
+            return redirect('Plantar', {'message': 'Data de colher inválida'})
+        
+        plantar.save(
+            plan_in_idProduto = produto,
+            plan_in_quantidade = quantidade,
+            plan_dt_plantar = dataPlantar,
+            plan_dt_colher = dataColher
+        )
+        print(dataColher)
+    return redirect('index', {'massage': 'Produto plantado com sucesso'})
