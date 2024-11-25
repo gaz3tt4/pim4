@@ -168,13 +168,26 @@
         crossorigin="anonymous"></script>
 
         <script>
-            // Alterna entre temas claro e escuro
-            function toggleTheme() {
-                document.documentElement.setAttribute(
-                    'data-bs-theme',
-                    document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark'
-                );
-            }
+// Aplica o tema salvo no localStorage ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+    // Sincroniza o botão de alternância com o tema atual (se existir)
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+        themeSwitch.checked = savedTheme === 'light';
+    }
+});
+
+// Alterna o tema e salva a preferência no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
+}
+
     
             // Função para voltar à página inicial
             document.getElementById('btnVoltar').addEventListener('click', function () {
