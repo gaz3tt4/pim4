@@ -84,11 +84,11 @@
 
             <div class="form-floating mb-3">
                 <input type="text" name="username" class="form-control" id="floatingInputUsername" placeholder="Username" required/>
-                <label for="floatingInputUsername">Username</label>
+                <label for="floatingInputUsername">Usuário</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" name="password" class="form-control" id="floatingInputPassword" placeholder="Senha" required/>
+                <input type="password" name="password" class="form-control" id="floatingInputPassword" placeholder="Senha" required/>
                 <label for="floatingInputPassword">Senha</label>
             </div>
 
@@ -118,7 +118,6 @@
             const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
             document.documentElement.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
         }
-
         // Adiciona evento de envio ao formulário para redirecionar após o login
         // document.getElementById('loginForm').addEventListener('submit', function(event) {
         //     event.preventDefault(); // Impede o envio do formulário para o servidor

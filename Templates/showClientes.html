@@ -38,56 +38,14 @@
         font-style: normal;
         color:#ffffff;
       }
-
-        /* Estilos do tema */
-        .theme-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .theme-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #2c2c2c;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'index' %}">
                 <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
                 <span class="fazendola-text">Fazendola</span>
             </a>
@@ -98,111 +56,121 @@
         </div>
     </nav>
 
-    <!-- Mensagens -->
-    {% if messages %}
-    <div class="alert-messages">
-        {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <!-- Tema alternável -->
-    <div class="mt-2 text-end pe-3">
-        <label class="theme-toggle">
-            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-        <span class="ms-2">Modo Claro/Escuro</span>
-    </div>
-    
     <section class="py-4 container">
-
-    <div>
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                    <h3 class="fw-bold p-3">Clientes</h3>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Documento</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">Ações</th> <!-- coluna botão de edição -->
-                </tr>
-            </thead>
-            <tbody>
-                {% for cliente in clientes %}
-                <tr>
-                    <th scope="row">{{ cliente.cli_in_id }}</th>
-                    <td>{{ cliente.cli_st_nome }}</td>
-                    <td>{{ cliente.cli_st_doc }}</td>
-                    <td>{{ cliente.cli_st_cidade }}</td>
-                    <td>
-                        <!-- Botao Editar -->
-                         <a href="{% url 'editClientes' cliente.cli_in_id %}">
-                             <button id="btnEdit" type="button" class="btn btn-outline-primary"><i
-                                     class="fa-solid fa-pen-to-square"></i></button>
-                         </a>
-
-                        <!-- Botao Excluir -->
-                        <a href="{% url 'deleteClientes' cliente.cli_in_id %}">
-                            <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-trash-can"></i></button>                             
-                         </a>
-
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <button id= "btnAdd" type="button" class="btn btn-outline-light"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
-
-
+        <!-- Formulário de Filtro -->
+        <form method="get" action="{% url 'showClientes' %}" class="mb-3">
+            <div class="row g-2">
+                <div class="col-md-3">
+                    <label for="nomeInput" class="form-label">Nome</label>
+                    <input id="nomeInput" type="text" name="Nome" class="form-control" placeholder="Filtrar por Nome" value="{{ filtros.Nome }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="cidadeInput" class="form-label">Cidade</label>
+                    <input id="cidadeInput" type="text" name="Cidade" class="form-control" placeholder="Filtrar por Cidade" value="{{ filtros.Cidade }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Estado</label>
+                    <select id="inputState" class="form-select" name="Estado">
+                        <option value="" {% if not filtros.Estado %}selected{% endif %}>Selecione um Estado</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-outline-primary w-100">Filtrar</button>
+                    <a href="{% url 'showClientes' %}" class="btn btn-outline-secondary w-100 ms-2">Limpar</a>
+                </div>
+            </div>
+        </form>
+    
+        <!-- Tabela de Clientes -->
+        <div>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <th scope="row">{{ cliente.cli_in_id }}</th>
+                        <td>{{ cliente.cli_st_nome }}</td>
+                        <td>{{ cliente.cli_st_doc }}</td>
+                        <td>{{ cliente.cli_st_cidade }}</td>
+                        <td>{{ cliente.cli_st_estado }}</td>
+                        <td>
+                            <a href="{% url 'editClientes' cliente.cli_in_id %}">
+                                <button id="btnEdit" type="button" class="btn btn-outline-primary">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                            </a>
+                            <a href="{% url 'deleteClientes' cliente.cli_in_id %}">
+                                <button type="button" class="btn btn-outline-danger">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum cliente encontrado.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+        <button id="btnAdd" type="button" class="btn btn-outline-primary">
+            <i class="fa-solid fa-file-import"></i> Cadastrar
+        </button>
+    </section>
+    
     <script>
-        // Redirecionamento para cadastro ao clicar no botão "Cadastrar"
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectEstado = document.getElementById('inputState');
+    
+            // Função para buscar os estados
+            async function carregarEstados() {
+                try {
+                    const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+                    const estados = await response.json();
+    
+                    // Ordena os estados por nome
+                    estados.sort((a, b) => a.nome.localeCompare(b.nome));
+    
+                    // Preenche o select com os estados
+                    estados.forEach(estado => {
+                        const option = document.createElement('option');
+                        option.value = estado.sigla;
+                        option.textContent = estado.nome;
+                        // Define o estado como selecionado caso corresponda ao filtro atual
+                        if (estado.sigla === "{{ filtros.Estado }}") {
+                            option.selected = true;
+                        }
+                        selectEstado.appendChild(option);
+                    });
+                } catch (error) {
+                    console.error('Erro ao carregar os estados:', error);
+                }
+            }
+    
+            // Chama a função para carregar os estados ao carregar a página
+            carregarEstados();
+        });
+    
         document.getElementById('btnAdd').addEventListener('click', function () {
             window.location.href = "{% url 'cadastroClientes' %}";
         });
-    </script>
-    </div>
-    </section>
+    </script>    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
-
-  
-    <script>
-// Aplica o tema salvo no localStorage ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
-    document.documentElement.setAttribute('data-bs-theme', savedTheme);
-
-    // Sincroniza o botão de alternância com o tema atual (se existir)
-    const themeSwitch = document.getElementById('themeSwitch');
-    if (themeSwitch) {
-        themeSwitch.checked = savedTheme === 'light';
-    }
-});
-
-// Alterna o tema e salva a preferência no localStorage
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
-}
-
-    
-        // Função para voltar à página inicial
-        document.getElementById('btnVoltar').addEventListener('click', function () {
-            window.location.href = "index.html";
-        });
-    </script>
 </body>
 
 
