@@ -5,8 +5,9 @@ def login(request):
     if request.method == "GET":
         username = request.GET.get('username')
         password = request.GET.get('password')
-        if validar_login(request, username, password):
-            return render(request, 'index.html')
+        if username != None:
+            if validar_login(request, username, password):
+                return render(request, 'index.html')
     return render(request, 'login.html')
 
 def index(request):
