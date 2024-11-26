@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'PimT',
         'USER': 'root',
         'PASSWORD': 'pim',
-        'HOST': '35.247.252.96',
+        'HOST': '34.133.125.23',
         'PORT': '3306',
     }
     # 'default': {
