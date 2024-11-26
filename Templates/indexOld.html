@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark" class="h-100">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fazendola</title>
+
+  <!-- Referencia para os estilos do CDN Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Referencia para os estilos do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Referencia para os estilos de fonte do google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+  <style>
+    .fazendola-text {
+      /* Ajuste do texto escrito na navbar */
+      font-family: "Itim", cursive;
+      font-weight: 400;
+      font-style: normal;
+      color: #ffffff;
+    }
+
+    /* Estilos do tema */
+    .theme-toggle {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .theme-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #2c2c2c;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34"
+          class="d-inline-block align-text-top">
+        <span class="fazendola-text">Fazendola</span>
+      </a>
+      <span class="navbar-text ms-auto d-flex align-items-center">
+        <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
+        <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
+      </span>
+    </div>
+  </nav>
+
+  <!-- Tema alternável -->
+  <div class="mt-2 text-end pe-3">
+    <label class="theme-toggle">
+      <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
+      <span class="slider"></span>
+    </label>
+    <span class="ms-2">Modo Claro/Escuro</span>
+  </div>
+
+  <section class="py-4 container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="btn-group-horizontal text-center">
+
+
+          <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg"
+            style="width: 200px; height: 104px;">
+            <p>Cliente</p>
+          </button>
+
+          <script> // Captura o botão pelo ID e adiciona o evento de clique
+            document.getElementById('btnClientes').addEventListener('click', function () {
+              window.location.href = "{% url 'showClientes' %}";
+            });
+          </script>
+
+          <button id='btnFornecedor' type="button" class="btn btn-outline-success btn-lg"
+            style="width: 200px; height: 104px;">
+            <p>Fornecedor</p>
+          </button>
+
+          <script>
+            // Captura o botão pelo ID e adiciona o evento de clique
+            document.getElementById('btnFornecedor').addEventListener('click', function () {
+              window.location.href = "{% url 'showFornecedor' %}";
+            });
+          </script>
+
+          <button id='btnProduto' type="button" class="btn btn-outline-success btn-lg"
+            style="width: 200px; height: 104px;">
+            <p>Produto</p>
+          </button>
+
+          <script>
+            // Captura o botão pelo ID e adiciona o evento de clique
+            document.getElementById('btnProduto').addEventListener('click', function () {
+              window.location.href = "{% url 'showProdutos' %}";
+            });
+          </script>
+
+          <script>
+            // Captura o botão pelo ID e adiciona o evento de clique
+            document.getElementById('btnProduto').addEventListener('click', function () {
+              window.location.href = "{% url 'showProdutos' %}";
+            });
+          </script>
+
+          <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+
+            <p>Venda</p>
+
+          </button>
+
+          <a href="{% url 'Plantar' %}">
+            <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+              <p>Plantar</p>
+            </button>
+          </a>
+
+          <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
+            <p>Relatório</p>
+          </button>
+        </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <section class="py-4 container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="border border-2 rounded p-4">
+          <h3 class="text-center" style="color: #ffffff; font-size: 2rem;">Produção</h3>
+          {% for planta in plantas %}
+          <div class="col-md-12">
+            <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ planta.plan_in_idProduto
+              }}</label>
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100">
+              <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" >
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <script>
+    // Alterna entre temas claro e escuro
+    function toggleTheme() {
+      document.documentElement.setAttribute(
+        'data-bs-theme',
+        document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark'
+      );
+    }
+
+    // Função para voltar à página inicial
+    document.getElementById('btnVoltar').addEventListener('click', function () {
+      window.location.href = "index.html";
+    });
+    // const progress = {{ percentual| floatformat: 2 }}; // Renderiza a porcentagem do Django no template
+
+    function atualizarProgressBar(valor) {
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.width = `${valor}%`; // Atualiza o estilo com o valor recebido
+    }
+
+    // Chama a função passando o valor renderizado
+    atualizarProgressBar(progress);
+  </script> -->
+
+</body>
+
+</html>
