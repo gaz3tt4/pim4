@@ -181,11 +181,10 @@
           <h3 class="text-center" style="color: #ffffff; font-size: 2rem;">Produção</h3>
           {% for planta in plantas %}
           <div class="col-md-12">
-            <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ planta.plan_in_idProduto
-              }}</label>
-            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
-              aria-valuemin="0" aria-valuemax="100">
-              <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" >
+            <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ planta.plan_in_idProduto }}</label>
+            <div id ="progressBarr" class="progress" role="progressbar" aria-label="Animated striped example" 
+              aria-valuemin="0" aria-valuemax="100" dt_plantio="{{ planta.plan_dt_plantio }}" dt_colheita="{{ planta.plan_dt_colheita }}">
+              <div id="progressBar" class="progress-bar progress-bar-striped bg-success-bar-animated"  >{{ percentual }}
               </div>
             </div>
           </div>
@@ -203,20 +202,23 @@
         document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark'
       );
     }
-
+      let dtPlantio = document.querySelectorAll('[dt_plantio]');
+      let dtColheita = document.querySelectorAll('[dt_colheita]');
+      const progresso = percentual(dtPlantio, dtColheita);
+      document.getElementById('progressBar').style.width = progresso + '%';
+      document.getElementById('progressBar').ariav
     // Função para voltar à página inicial
     document.getElementById('btnVoltar').addEventListener('click', function () {
       window.location.href = "index.html";
     });
-    const progress = {{ percentual| floatformat: 2 }}; // Renderiza a porcentagem do Django no template
+    
 
-    function atualizarProgressBar(valor) {
-      const progressBar = document.getElementById('progressBar');
-      progressBar.style.width = `${valor}%`; // Atualiza o estilo com o valor recebido
-    }
+    // function atualizarProgressBar(valor) {
+    //   const progressBar = document.getElementById('progressBar');
+    //   progressBar.style.width = `${valor}%`; // Atualiza o estilo com o valor recebido
+    // }
 
     // Chama a função passando o valor renderizado
-    atualizarProgressBar(progress);
   </script>
 
 </body>

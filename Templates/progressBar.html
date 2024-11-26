@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Progresso</title>
+    <style>
+        #progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            height: 30px;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #4caf50;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+        }
+
+
+        .fazendola-text {
+            /* Ajuste do texto escrito na navbar */
+            font-family: "Itim", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: #ffffff;
+        }
+
+        /* Estilos do tema */
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #2c2c2c;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body>
+    {% for planta in plantas %}
+          <div class="col-md-12">
+            <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ planta.plan_in_idProduto }}</label>
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75"
+              aria-valuemin="0" aria-valuemax="100">
+              <div id="progressBar" class="progress-bar progress-bar-striped bg-success-bar-animated" style="width: 75%" >
+              </div>
+            </div>
+          </div>
+          {% endfor %}>
+
+    <script>
+        document.getElementById('start-button').addEventListener('click', function () {
+            fetch('/progress/')
+                .then(response => response.json())
+                .then(data => {
+                    const progressBar = document.getElementById('progress-bar');
+                    progressBar.style.width = data.progress + '%';
+                })
+                .catch(error => console.error('Erro ao atualizar progresso:', error));
+        });
+    </script>
+</body>
+
+</html>

@@ -9,15 +9,22 @@ from datetime import datetime
 # index carrega a template de produção, mostra o progresso da plantação
 def index(request):
     plantas = Plantar.objects.all()
-    plant_in_id = list(plantas.values_list('plan_in_idProduto', flat=True))
-    produtos = Produto.objects.filter(est_in_id__in=plant_in_id).values_list('est_st_nome', flat=True)
-    # dtPlantar = plantas.values_list('plan_dt_plantar', flat=True)
-    # dtColher = plantas.values_list('plan_dt_colher', flat=True)
-    # percentual = percentual(dtPlantar, dtColher)
+    plant_in_id_prod = list(plantas.values_list('plan_in_idProduto', flat=True))
+    id_plantas = list(plantas.values_list('plan_in_id', flat=True))
+    produtos = Produto.objects.filter(est_in_id__in=plant_in_id_prod).values_list('est_st_nome', flat=True)
+    dtPlantar = Plantar.objects.filter(plan_in_id__in=id_plantas).values_list('plan_dt_plantar', flat=True)
+   
+    # dtPlantar = set(dtPlantar)
+
+    dtColher = Plantar.objects.filter(plan_in_id__in=id_plantas).values_list('plan_dt_colher', flat=True) 
+    # dtColher = set(dtColher)
+    # progress = percentual(dtPlantar, dtColher)
+    
 
     context = {
         'plantas': plantas
     }
+    print( dtPlantar, dtColher)
     return render(request, 'index.html', context)
 
 
@@ -159,8 +166,8 @@ def calculaPrazo(DtPlantio, DtColheita):
 def percentual(DtPlantio, DtColheita):
     prazo = calculaPrazo(DtPlantio, DtColheita)
     DtHj = date.today()
-    somaPrazo = DtHj - DtColheita
+    somaPrazo = DtColheita - DtHj
     somaPrazo = int(somaPrazo.days)
-    percentual = (somaPrazo - prazo) * 100 
+    percentual = (somaPrazo * 100) / prazo
 
     return percentual
