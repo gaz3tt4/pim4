@@ -21,7 +21,7 @@ from .utils import validar_nome, edita_cliente, validar_doc, sanitiza_telefone, 
 # engine = create_engine(connection_string)
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'showClientes.html')
 
 def ShowClientes(request):
     clientes = Cliente.objects.all()

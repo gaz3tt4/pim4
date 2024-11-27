@@ -18,7 +18,7 @@
   <!-- Referencia para os estilos de fonte do google fonts -->    
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Monoton&family=Protest+Revolution&display=swap" rel="stylesheet">
 
     <style>
         .btn-custom {
@@ -36,7 +36,7 @@
         font-family: "Itim", cursive;
         font-weight: 400;
         font-style: normal;
-        color:#ffffff; 
+        color:#ffffff;
       }
 
       .green-row {
@@ -47,26 +47,34 @@
         background-color: #ff4c4c;
       }
 
- /* Style navbar */
- .navbar-custom {
-    background-color: #0080ff; 
+
+/* Style navbar */
+
+/* Backgound navbar */
+.navbar-custom {
+    background-color: #198754; 
     color: white;
   }
 
+  /* Fazendeiro Admin navbar */
   .navbar-custom .navbar-brand,
   .navbar-custom .navbar-text {
-    color: rgb(255, 0, 0);
+    color: #000000;
+    font-size: 0.7rem;
+    font-family: "Protest Revolution", sans-serif;
   }
 
   .navbar-custom .navbar-brand img {
     filter: brightness(100%);
   }
 
+  /* Fazendola text navbar */
   .navbar-custom .fazendola-text {
-    color: #00e900;
-    font-size: 1.5rem;
-    font-family: "Arial", sans-serif;
-  }
+  color: #000000;
+  font-size: 2.0rem;
+  font-family: "Monoton", sans-serif;
+}
+
     </style>
 </head>
 
@@ -75,7 +83,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'index' %}">
           <!-- Logo da GreenWood -->
           <span class="fazendola-text">Fazendola</span>
         </a>
@@ -92,7 +100,7 @@
             <h3 class="fw-bold p-3">Estoque</h3>
             <div class="border border-2 rounded p-4">
                 <form class="row g-3 justify-content-center" method="post" action="{% url 'showProdutos' %}">
-                    
+
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">Id Produto</label>
@@ -136,7 +144,7 @@
             </a>
     <button id="btnAdd" type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->    
     <button id="btnCompra" type="button" class="btn btn-outline-warning"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
-           
+
     <script>
         document.getElementById('btnCompra').addEventListener('click', function () {
         window.location.href = "{% url 'comprarInsumo' %}";
@@ -155,16 +163,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                     {% for compra in compras %}
-                        <tr 
+                        <tr
                             {% if compra.comp_in_idProduto.est_ch_tip == 'I' %}
                                 class="green-row"
                             {% elif compra.comp_in_idProduto.est_ch_tip == 'P' %}
                                 class="red-row"
                             {% endif %}
                         >
-                            <th scope="row">{{ compra.comp_in_idProduto.est_ch_tipo }}</th>                            
+                            <th scope="row">{{ compra.comp_in_idProduto.est_ch_tipo }}</th>
                             <td>{{ compra.comp_in_id }}</td>
                             <td>{{ compra.comp_in_idProduto.est_st_nome }}</td>
                             <td>{{ compra.comp_in_quantidade }}</td>
@@ -212,12 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
     }
 });
-
-
-        // Função para voltar à página inicial
-        document.getElementById('btnVoltar').addEventListener('click', function () {
-            window.location.href = "index.html";
-        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -18,36 +18,39 @@
   <!-- Referencia para os estilos de fonte do google fonts -->    
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Monoton&family=Protest+Revolution&display=swap" rel="stylesheet">
+  
+  
 
     <style> 
-      .fazendola-text { /* Ajuste do texto escrito na navbar */
-        font-family: "Itim", cursive;
-        font-weight: 400;
-        font-style: normal;
-        color:#ffffff;
-}
 
 /* Style navbar */
+
+/* Backgound navbar */
 .navbar-custom {
-    background-color: #0080ff; 
+    background-color: #198754; 
     color: white;
   }
 
+  /* Fazendeiro Admin navbar */
   .navbar-custom .navbar-brand,
   .navbar-custom .navbar-text {
-    color: rgb(255, 0, 0);
+    color: #000000;
+    font-size: 0.7rem;
+    font-family: "Protest Revolution", sans-serif;
   }
 
   .navbar-custom .navbar-brand img {
     filter: brightness(100%);
   }
 
+  /* Fazendola text navbar */
   .navbar-custom .fazendola-text {
-    color: #00e900;
-    font-size: 1.5rem;
-    font-family: "Arial", sans-serif;
-  }
+  color: #000000;
+  font-size: 2.0rem;
+  font-family: "Monoton", sans-serif;
+}
+
     </style>
 </head>
 
@@ -58,12 +61,12 @@
   <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <!-- Logo da GreenWood -->
-        <span class="fazendola-text">Fazendola</span>
+        <span class="fazendola-text">GreenWood</span>
       </a>
       <!-- Área do usuário -->
       <span class="navbar-text ms-auto d-flex align-items-center">
           <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
-          <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
+          <span style="font-size: 1.2rem;">Fazendeiro Admin</span>
       </span>
   </div>
 </nav>
@@ -156,7 +159,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="border border-2 rounded p-4">
-          <h3 class="text-center" style="color: #ffffff; font-size: 2rem;">Produção</h3>
+          <h3 class="text-center" style="color: #198754; font-size: 2rem;">Produção</h3>
           {% for dado in Dados%}
           <div class="col-md-12">
             <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ dado.plan_in_idProduto }}</label>
