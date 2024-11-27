@@ -17,36 +17,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Monoton&family=Protest+Revolution&display=swap" rel="stylesheet">
 
     <style>
-      .fazendola-text {
-        /* Ajuste do texto escrito na navbar */
-        font-family: 'Itim', cursive;
-        font-weight: 400;
-        font-style: normal;
-        color: #ffffff;
-      }
+            /* Style navbar */
+        
+        /* Backgound navbar */
+        .navbar-custom {
+            background-color: #198754; 
+            color: white;
+          }
+        
+          /* Fazendeiro Admin navbar */
+          .navbar-custom .navbar-brand,
+          .navbar-custom .navbar-text {
+            color: #000000;
+            font-size: 0.7rem;
+            font-family: "Protest Revolution", sans-serif;
+          }
+        
+          .navbar-custom .navbar-brand img {
+            filter: brightness(100%);
+          }
+        
+          /* Fazendola text navbar */
+          .navbar-custom .fazendola-text {
+          color: #000000;
+          font-size: 2.0rem;
+          font-family: "Monoton", sans-serif;
+        }
     </style>
   </head>
 
   <body>
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top" />
-          <span class="fazendola-text">Fazendola</span>
-        </a>
-        <span class="navbar-text ms-auto d-flex align-items-center">
-          <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
-          <!-- Ajuste o tamanho do ícone aqui -->
-          <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
-          <!-- Ajuste o tamanho do texto aqui -->
-        </span>
-      </div>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-custom">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <!-- Logo da GreenWood -->
+        <span class="fazendola-text">GreenWood</span>
+      </a>
+      <!-- Área do usuário -->
+      <span class="navbar-text ms-auto d-flex align-items-center">
+          <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+          <span style="font-size: 1.2rem;">Fazendeiro Admin</span>
+      </span>
+  </div>
+</nav>
     <br />
 
     <section class="py-4 container">
       <form id="formVenda" class="row g-3" method="post" action="{% url 'salvarVenda' %}">
-      <h3 class="fw-bold p-3">Vendas</h3>
+        <h3 class="fw-bold p-3"  style="color: #198754; font-size: 2rem;">Vendas</h3>
       <div class="row">
         <div class="col-md-2">
           <label for="inputNome4" class="form-label">Cliente</label>
@@ -100,16 +119,16 @@
                   </div>
                 
                   <div class="col-12 mt-3">
-                    <button id="btnVoltar" type="button" class="btn btn-outline-primary">
+                    <button id="btnVoltar" type="button" class="btn btn-outline-secondary">
                       <i class="fa-solid fa-arrow-left"></i> Voltar
                     </button>
-                    <button type="submit" class="btn btn-outline-primary">
+                    <button type="submit" class="btn btn-outline-secondary">
                       <i class="fa-regular fa-floppy-disk"></i> Salvar
                     </button>
                     <button id="btnAdicionarVenda" type="button" class="btn btn-outline-primary">
                       <i class="fa-regular fa-plus"></i> Adicionar
                     </button>
-                    <a href="{% url 'showVendas'%}" class="btn btn-outline-primary"> list Vendas</a>
+                    <a href="{% url 'showVendas'%}" class="btn btn-outline-danger"> Listar Vendas</a>
                   </div>
                 </form>
                 
@@ -129,6 +148,27 @@
     
 
     <script>
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Aplica o tema salvo no localStorage ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+    // Configura o estado do botão com base no tema salvo
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+        themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
+    }
+});
+
       document.getElementById('btnAdicionarVenda').disabled=true;
 
       document.addEventListener('DOMContentLoaded', () => {

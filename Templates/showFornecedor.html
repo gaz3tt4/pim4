@@ -96,7 +96,7 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <h3 class="fw-bold p-3">Fornecedores</h3>
+                        <h3 class="fw-bold p-3"  style="color: #198754; font-size: 2rem;">Fornecedores</h3>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Documento</th>
@@ -130,11 +130,13 @@
         </div>
         <a href="{% url 'index' %}">
             <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
-                _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-        </a>
-        <a href="{% url 'gerar_relatorio' %}" class="btn btn-outline-secondary"}">Relatorio</a>
+                _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button></a>
 
-        <button id= "btnAdd" type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
+            <button id= "btnAdd" type="button" class="btn btn-outline-primary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->
+
+            <a href="{% url 'gerar_relatorio' %}" class="btn btn-outline-danger">Relatório</a>
+
+
         
 
         <script>

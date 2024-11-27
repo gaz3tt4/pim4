@@ -48,14 +48,7 @@
       font-size: 2.0rem;
       font-family: "Monoton", sans-serif;
     }
-    
 
-    /* CSS do texto Plantio */
-h3.fw-bold {
-  font-family: "Protest Revolution", sans-serif;
-  font-size: 2.0rem;
-  color: #198754;
-}
 
         </style>
 
@@ -83,7 +76,7 @@ h3.fw-bold {
     <section class="py-4 container">
 
         <div class="row">
-            <h3 class="fw-bold p-3">Plantio</h3>
+            <h3 class="fw-bold p-3"  style="color: #198754; font-size: 2rem;">Plantio</h3>
             <div class="border border-2 rounded p-4">
                 <form class="row g-3" method="post" action="{% url 'storePlantar'%}">
                     {% csrf_token %}

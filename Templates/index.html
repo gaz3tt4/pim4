@@ -93,7 +93,7 @@
 
     <button id="btnClientes" type="button" class="btn btn-outline-success btn-lg" 
     style="width: 200px; height: 104px;">
-      <p>Cliente</p>
+      <p>Clientes</p>
     </button>
 
     <script> // Captura o botão pelo ID e adiciona o evento de clique
@@ -104,7 +104,7 @@
 
     <button id='btnFornecedor' type="button" class="btn btn-outline-success btn-lg"
       style="width: 200px; height: 104px;">
-      <p>Fornecedor</p>
+      <p>Fornecedores</p>
     </button>
 
     <script>
@@ -116,7 +116,7 @@
 
     <button id='btnProduto' type="button" class="btn btn-outline-success btn-lg" 
     style="width: 200px; height: 104px;">
-      <p>Produto</p>
+      <p>Produtos</p>
     </button>
     
     <script>
@@ -128,7 +128,7 @@
 
     <button id='btnVenda'type="button" class="btn btn-outline-success btn-lg" 
     style="width: 200px; height: 104px;">
-      <p>Venda</p>
+      <p>Vendas</p>
     </button>
 
     <script>
@@ -141,13 +141,9 @@
 
     <a href="{% url 'Plantar' %}">
       <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-        <p>Plantar</p>
+        <p>Plantação</p>
       </button>
     </a>
-
-    <button type="button" class="btn btn-outline-success btn-lg" style="width: 200px; height: 104px;">
-      <p>Relatório</p>
-    </button>
   </div>
 </section>
 
@@ -158,11 +154,11 @@
   <section class="py-4 container">
     <div class="row">
       <div class="col-md-12">
-        <div class="border border-2 rounded p-4">
+        <div class="border border-2 rounded p-4 border-success">
           <h3 class="text-center" style="color: #198754; font-size: 2rem;">Produção</h3>
           <a href="{% url 'gerar_relatorioProd'%}">
-            <button  type="button" class="btn btn-outline-secondary" _msttexthash="77766"
-              _msthash="222"> Relatorio</button>
+            <button  type="button" class="btn btn-outline-danger" _msttexthash="77766"
+              _msthash="222"> Relatório</button>
           </a>
           {% for dado in Dados%}
           <div class="col-md-12">
