@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark" class="h-100">
+<html lang="pt-br" data-bs-theme="dark" class="h-100">     {% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -79,7 +79,7 @@
         <form id="loginForm" method="get" action="{% url 'login' %}">
             {% csrf_token %}
             <!-- Caminho relativo para a imagem -->
-            <img src="assets/FarmVille Logo sem fundo.png" class="mb-4" height="325" width="325" alt="FarmVille Logo"/>
+            <img src="{% static 'assets/Logo_GreenWood_sem_fundo.png' %}" class="mb-4" height="260" width="310" alt="GreenWood Logo"/>
             <h1 class="h3 mb-3 fw-normal">Faça o login!</h1>
 
             <div class="form-floating mb-3">
@@ -92,32 +92,44 @@
                 <label for="floatingInputPassword">Senha</label>
             </div>
 
-            <div class="form-check text-start my-3">
-                <input type="checkbox" class="form-check-input" id="flexCheckDefault"/>
-                <label class="form-check-label" for="flexCheckDefault">Me manter conectado</label>
-            </div>
-
             <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
         </form>
 
-        <!-- Botão de alternância para mudar o tema -->
-        <div class="mt-4">
-            <label class="theme-toggle">
-                <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-                <span class="slider"></span>
-            </label>
-            <span class="ms-2">Modo Claro/Escuro</span>
-        </div>
+    <!-- Botão de alternância para mudar o tema -->
+    <div class="mt-4">
+        <label class="theme-toggle">
+            <input type="checkbox" id="themeSwitch">
+            <span class="slider"></span>
+        </label>
+        <span class="ms-2">Modo Claro/Escuro</span>
+    </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script para alternar o tema e redirecionar -->
     <script>
-        function toggleTheme() {
-            const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
-            document.documentElement.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
-        }
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Aplica o tema salvo no localStorage ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+    // Configura o estado do botão com base no tema salvo
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+        themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
+    }
+});
+
+
         // Adiciona evento de envio ao formulário para redirecionar após o login
         // document.getElementById('loginForm').addEventListener('submit', function(event) {
         //     event.preventDefault(); // Impede o envio do formulário para o servidor

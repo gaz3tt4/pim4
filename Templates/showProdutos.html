@@ -47,73 +47,45 @@
         background-color: #ff4c4c;
       }
 
-        /* Estilos do tema */
-        .theme-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .theme-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: #2c2c2c;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
+ /* Style navbar */
+ .navbar-custom {
+    background-color: #0080ff; 
+    color: white;
+  }
+
+  .navbar-custom .navbar-brand,
+  .navbar-custom .navbar-text {
+    color: rgb(255, 0, 0);
+  }
+
+  .navbar-custom .navbar-brand img {
+    filter: brightness(100%);
+  }
+
+  .navbar-custom .fazendola-text {
+    color: #00e900;
+    font-size: 1.5rem;
+    font-family: "Arial", sans-serif;
+  }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
-                <span class="fazendola-text">Fazendola</span>
-            </a>
-            <span class="navbar-text ms-auto d-flex align-items-center">
-                <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
-                <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
-            </span>
-        </div>
-    </nav>
-
-    <!-- Tema alternável -->
-    <div class="mt-2 text-end pe-3">
-        <label class="theme-toggle">
-            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-        <span class="ms-2">Modo Claro/Escuro</span>
+<!-- Navbar -->
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Logo da GreenWood -->
+          <span class="fazendola-text">Fazendola</span>
+        </a>
+        <!-- Área do usuário -->
+        <span class="navbar-text ms-auto d-flex align-items-center">
+            <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+            <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
+        </span>
     </div>
+  </nav>
 
     <section class="py-4 container">
         <div class="row">
@@ -159,7 +131,7 @@
     <section class="py-4 container">
         <div>
 
-    <button id="btnAdd" type="button" class="btn btn-outline-light"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->    
+    <button id="btnAdd" type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->    
     <button id="btnCompra" type="button" class="btn btn-outline-warning"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
            
     <script>
@@ -217,25 +189,26 @@
     </div>
 
     <script>
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 // Aplica o tema salvo no localStorage ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
     document.documentElement.setAttribute('data-bs-theme', savedTheme);
 
-    // Sincroniza o botão de alternância com o tema atual (se existir)
+    // Configura o estado do botão com base no tema salvo
     const themeSwitch = document.getElementById('themeSwitch');
     if (themeSwitch) {
         themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
     }
 });
-
-// Alterna o tema e salva a preferência no localStorage
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
-}
 
 
         // Função para voltar à página inicial

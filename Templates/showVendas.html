@@ -1,197 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="dark" class="h-100">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vendas</title>
 
-    <!-- Referencia para os estilos do CDN Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fornecedores</title>
 
-    <!-- Referencia para os estilos do Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Referencia para os estilos do CDN Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Referencia para os estilos de fonte do google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+  <!-- Referencia para os estilos do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Referencia para os estilos de fonte do google fonts -->    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 
     <style>
-      .fazendola-text {
-        /* Ajuste do texto escrito na navbar */
-        font-family: 'Itim', cursive;
+        .btn-custom {
+            padding: 1px 15px 3px 2px;
+            border-radius: 50px;
+        }
+
+        .btn-icon {
+            padding: 8px;
+            background: #000000;
+            border-radius: 50%;
+        }
+
+      .fazendola-text { /* Ajuste do texto escrito na navbar */
+        font-family: "Itim", cursive;
         font-weight: 400;
         font-style: normal;
-        color: #ffffff;
+        color:#ffffff;
       }
-    </style>
-  </head>
 
-  <body>
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top" />
+      /* Style navbar */
+  .navbar-custom {
+    background-color: #0080ff; 
+    color: white;
+  }
+
+  .navbar-custom .navbar-brand,
+  .navbar-custom .navbar-text {
+    color: rgb(255, 0, 0);
+  }
+
+  .navbar-custom .navbar-brand img {
+    filter: brightness(100%);
+  }
+
+  .navbar-custom .fazendola-text {
+    color: #00e900;
+    font-size: 1.5rem;
+    font-family: "Arial", sans-serif;
+  }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Logo da GreenWood -->
           <span class="fazendola-text">Fazendola</span>
         </a>
+        <!-- Área do usuário -->
         <span class="navbar-text ms-auto d-flex align-items-center">
-          <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
-          <!-- Ajuste o tamanho do ícone aqui -->
-          <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
-          <!-- Ajuste o tamanho do texto aqui -->
+            <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+            <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
         </span>
-      </div>
-    </nav>
-    <br />
+    </div>
+  </nav>
 
     <section class="py-4 container">
-      <form id="formVenda" class="row g-3" method="post" action="{% url 'salvarVenda' %}">
-      <h3 class="fw-bold p-3">Vendas</h3>
-      <div class="row">
-        <div class="col-md-2">
-          <label for="inputNome4" class="form-label">Cliente</label>
-          <select name="IdCliente" class="form-control" id="slectProd" required>
-            {% for cliente in clientes %}
-              <option value="{{ cliente.cli_in_id }}">{{ cliente.cli_st_nome }}</option>
-            {% endfor %}
-          </select>
+        <div>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <h3 class="fw-bold p-3">Vendas</h3>
+                        <th scope="col">Id</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Data da compra</th>
+                        <th scope="col">Valor total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venda in vendas %}
+                    <tr>
+                        <th scope="row">{{ vendas.vend_in_id }}</th>
+                        <td>{{ vendas.vend_in_idCliente_id.cli_st_nome }}</td>
+                        <td>{{ vendas.vend_dt_venda }}</td>
+                        <td>{{ vendas.vend_vl_total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-2">
-          <label for="inputDate" class="form-label">Data da Venda</label>
-          <input type="date" class="form-control" id="inputDate" name="DataCompra" required />
         </div>
-      </div>
     </section>
 
-    <section class="py-4 container">
-      <div class="row">
-        <div class="border border-2 rounded p-4">
-                {% csrf_token %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
-                <div id="itensVenda">
-                    <div class="row g-3 align-items-center venda-item">
-                      <div class="col-md-2">
-                        <label for="inputNome4" class="form-label">Produto</label>
-                        <select name="Produto[]" class="form-control">
-                          {% for plantar in lista_estoque %}
-                          <option value="{{ plantar.plan_in_id }}|{{ plantar.plan_in_idProduto.id }}">{{ plantar.plan_in_idProduto.est_st_nome }}#{{ plantar.plan_in_id }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputAddress" class="form-label">Quantidade</label>
-                        <input type="number" class="form-control Quantidade" placeholder="10kg" name="Quantidade[]" />
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputTel2" class="form-label">Valor</label>
-                        <input type="text" class="form-control Preco" placeholder="R$10,00" name="Preco[]" />
-                      </div>
-                      <div class="col-md-1 d-flex align-items-center">
-                        <button type="button" class="btn btn-danger excluir-item" style="margin-top: 30px;">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 mt-3 text-end">
-                    <label for="valorTotal" class="form-label fw-bold">Valor Total:</label>
-                    <span id="valorTotal" class="fw-bold">R$0,00</span>
-                  </div>
-                
-                  <div class="col-12 mt-3">
-                    <button id="btnVoltar" type="button" class="btn btn-outline-primary">
-                      <i class="fa-solid fa-arrow-left"></i> Voltar
-                    </button>
-                    <button type="submit" class="btn btn-outline-primary">
-                      <i class="fa-regular fa-floppy-disk"></i> Salvar
-                    </button>
-                    <button id="btnAdicionarVenda" type="button" class="btn btn-outline-primary">
-                      <i class="fa-regular fa-plus"></i> Adicionar
-                    </button>
-                  </div>
-                </form>
-
-
-              {% comment %} <script>
-                            // Captura o botão pelo ID e adiciona o evento de clique
-                            document.getElementById('btnVoltar').addEventListener('click', function () {
-                                window.location.href = "{% url 'Store' %}";
-                            });
-                        </script> {% endcomment %}
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
 
     <script>
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
 
-      document.addEventListener('DOMContentLoaded', () => {
-        const itensVenda = document.getElementById('itensVenda');
-        const btnAdicionarVenda = document.getElementById('btnAdicionarVenda');
-      
-        function excluirItem(event) {
-          const item = event.target.closest('.venda-item');
-          if (item) {
-            item.remove();
-            atualizarValorTotal();
-          }
-        }
-      
-        function atualizarValorTotal() {
-          let total = 0;
-      
-          document.querySelectorAll('.venda-item').forEach(item => {
-            const quantidade = parseFloat(item.querySelector('.Quantidade').value) || 0;
-            const preco = parseFloat(formatarPrecoParaNumero(item.querySelector('.Preco').value)) || 0;
-            total += quantidade * preco;
-          });
-      
-          document.getElementById('valorTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-        }
-      
-        function formatarPrecoParaNumero(preco) {
-          return preco.replace('R$', '').replace('.', '').replace(',', '.');
-        }
-      
-        function adicionarNovoItem() {
-          const novaLinha = document.querySelector('.venda-item').cloneNode(true);
-      
-          novaLinha.querySelectorAll('input, select').forEach(input => {
-            if (input.tagName === 'INPUT') {
-              input.value = '';
-            }
-          });
-      
-          itensVenda.appendChild(novaLinha);
-          atualizarValorTotal();
-        }
-      
-        // Delegação de eventos para excluir itens
-        itensVenda.addEventListener('click', function (event) {
-          if (event.target.classList.contains('excluir-item')) {
-            excluirItem(event);
-          }
+// Aplica o tema salvo no localStorage ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+    // Configura o estado do botão com base no tema salvo
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+        themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
+    }
+});
+
+
+        // Função para voltar à página inicial
+        document.getElementById('btnVoltar').addEventListener('click', function () {
+            window.location.href = "index.html";
         });
-      
-        // Adiciona um novo item ao clicar no botão
-        btnAdicionarVenda.addEventListener('click', adicionarNovoItem);
-      
-        // Atualiza o total em tempo real para todos os itens
-        itensVenda.addEventListener('input', function (event) {
-          if (event.target.classList.contains('Quantidade') || event.target.classList.contains('Preco')) {
-            atualizarValorTotal();
-          }
-        });
-      
-        atualizarValorTotal(); // Calcula o total inicial
-      });
-          
-          document.getElementById('btnVoltar').addEventListener('click', function () {
-            window.location.href = "{% url 'index' %}";
-          });
-      </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+    </script>
+
+</body>
+
 </html>

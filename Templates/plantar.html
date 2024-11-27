@@ -27,39 +27,50 @@
         font-style: normal;
         color:#ffffff;
         }
+
+        /* Style navbar */
+  .navbar-custom {
+    background-color: #0080ff; 
+    color: white;
+  }
+
+  .navbar-custom .navbar-brand,
+  .navbar-custom .navbar-text {
+    color: rgb(255, 0, 0);
+  }
+
+  .navbar-custom .navbar-brand img {
+    filter: brightness(100%);
+  }
+
+  .navbar-custom .fazendola-text {
+    color: #00e900;
+    font-size: 1.5rem;
+    font-family: "Arial", sans-serif;
+  }
     </style>
 
 </head>
 
 <body>
+
 <!-- Navbar -->
-
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
-                <span class="fazendola-text">Fazendola</span>
-            </a>
-            <span class="navbar-text ms-auto d-flex align-items-center">
-                <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
-                <!-- Ajuste o tamanho do ícone aqui -->
-                <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
-                <!-- Ajuste o tamanho do texto aqui -->
-            </span>
-        </div>
-    </nav>
-    <br>
-
-
-    <!-- Tema alternável -->
-    <div class="mt-2 text-end pe-3">
-        <label class="theme-toggle">
-            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-        <span class="ms-2">Modo Claro/Escuro</span>
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Logo da GreenWood -->
+          <span class="fazendola-text">Fazendola</span>
+        </a>
+        <!-- Área do usuário -->
+        <span class="navbar-text ms-auto d-flex align-items-center">
+            <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+            <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
+        </span>
     </div>
+  </nav>
 
+
+    <br>
     <section class="py-4 container">
 
         <div class="row">
@@ -69,7 +80,7 @@
                     {% csrf_token %}
                     <div class="col-md-2">
                         <label for="inputNome4" class="form-label">ID da Compra</label>
-                        <select name="Compra" class="form-control" id="slectProd">
+                        <select name="Compra" class="form-control" id="selectProd">
                             {% for compra in compras %}
                             <option value="{{ compra.comp_in_id }}" data-nome = "{{ compra.comp_in_idProduto.est_st_nome }}" data-id ="{{ compra.comp_in_idProduto.est_in_id }}" data-qnt ="{{ compra.comp_in_quantidade }}">{{ compra.comp_in_id }}</option>
                             {% endfor %}
@@ -84,7 +95,7 @@
                         <label for="inputAddress" class="form-label" _msttexthash="133848"
                             _msthash="212">Quantidade</label>
                         <input type="number" class="form-control" id="inputQuantidade" placeholder="10kg"
-                            _mstplaceholder="126607" _msthash="213" name="Quantidade"  required>
+                            _mstplaceholder="126607" _msthash="213" name="Quantidade" min="1" required>
                     </div>
                     <div class="col-md-2">
                         <label for="inputDate" class="form-label">Data de Plantio</label>
@@ -98,11 +109,11 @@
                     
 
                     <div class="col-12">
+                        <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
+                            _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+
                         <button type="submit" class="btn btn-outline-primary" _msttexthash="77766" _msthash="222"><i
                                 class="fa-regular fa-floppy-disk"></i> Salvar</button>
-
-                        <button id="btnVoltar" type="button" class="btn btn-outline-primary" _msttexthash="77766"
-                            _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
 
                         <script>
                             // Captura o botão pelo ID e adiciona o evento de clique
@@ -111,7 +122,7 @@
                             });
                             document.getElementById('inputProd').disabled = true
 
-                            document.getElementById('slectProd').addEventListener('change', function () {
+                            document.getElementById('selectProd').addEventListener('change', function () {
                                 const selectedOption = this.options[this.selectedIndex];
                                 const productName = selectedOption.getAttribute('data-nome');
                                 const procuctID = selectedOption.getAttribute('data-id');
@@ -137,25 +148,26 @@
 
 
     <script>
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 // Aplica o tema salvo no localStorage ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
     document.documentElement.setAttribute('data-bs-theme', savedTheme);
 
-    // Sincroniza o botão de alternância com o tema atual (se existir)
+    // Configura o estado do botão com base no tema salvo
     const themeSwitch = document.getElementById('themeSwitch');
     if (themeSwitch) {
         themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
     }
 });
-
-// Alterna o tema e salva a preferência no localStorage
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
-}
 
 
         // Função para voltar à página inicial

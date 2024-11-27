@@ -6,109 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Cliente</title>
 
-  <!-- Referencia para os estilos do CDN Libraries -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Referencia para os estilos do CDN Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Referencia para os estilos do Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Referencia para os estilos do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <!-- Referencia para os estilos de fonte do google fonts -->    
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <!-- Referencia para os estilos de fonte do google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
 
-    <style> 
-      .fazendola-text { /* Ajuste do texto escrito na navbar */
-        font-family: "Itim", cursive;
-        font-weight: 400;
-        font-style: normal;
-        color:#ffffff;
+    <style>
+        .fazendola-text {
+            /* Ajuste do texto escrito na navbar */
+            font-family: "Itim", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: #ffffff;
         }
 
-        /* Estilos do tema */
-        .theme-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
+        /* Style navbar */
+        .navbar-custom {
+            background-color: #0080ff;
+            color: white;
         }
-        .theme-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: rgb(255, 0, 0);
         }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
+
+        .navbar-custom .navbar-brand img {
+            filter: brightness(100%);
         }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+
+        .navbar-custom .fazendola-text {
+            color: #00e900;
+            font-size: 1.5rem;
+            font-family: "Arial", sans-serif;
         }
-        input:checked + .slider {
-            background-color: #2c2c2c;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-    </style>    
-        
+    </style>
+
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
-                <span class="fazendola-text">Fazendola</span>
-            </a>
-            <span class="navbar-text ms-auto d-flex align-items-center">
-                <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
-                <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
-            </span>
-        </div>
-    </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Logo da GreenWood -->
+          <span class="fazendola-text">Fazendola</span>
+        </a>
+        <!-- Área do usuário -->
+        <span class="navbar-text ms-auto d-flex align-items-center">
+            <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+            <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
+        </span>
+    </div>
+  </nav>
 
     <!-- Mensagens -->
     {% if messages %}
-        <div class="alert-messages">
-            {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
+    <div class="alert-messages">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
         </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
-    <!-- Tema alternável -->
-    <div class="mt-2 text-end pe-3">
-        <label class="theme-toggle">
-            <input type="checkbox" id="themeSwitch" onclick="toggleTheme()">
-            <span class="slider"></span>
-        </label>
-        <span class="ms-2">Modo Claro/Escuro</span>
-    </div>
     <br>
-
     <section class="py-4 container">
         <div class="row">
             <h3 class="fw-bold p-3">Cadastro Cliente</h3>
@@ -128,14 +101,16 @@
                         <label class="form-check-label" for="Tipo" _msttexthash="143416" _msthash="221"> CNPJ </label>
                     </div>
                     {% if Tipo == 'J' %}
-                        <div class=" col-md-11">
-                            <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Documento</label>
-                            <input maxlength="14" type="number" class="form-control" id="inputTel2" _msthash="215" name="Doc" placeholder="00.000.000/0000-00">
-                        </div>
+                    <div class=" col-md-11">
+                        <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Documento</label>
+                        <input maxlength="14" type="number" class="form-control" id="inputTel2" _msthash="215"
+                            name="Doc" placeholder="00.000.000/0000-00">
+                    </div>
                     {% endif %}
                     <div class=" col-md-11">
                         <label for="inputTel2" class="form-label" _msttexthash="143598" _msthash="214">Documento</label>
-                        <input maxlength="11" type="number" class="form-control" id="inputTel2" _msthash="215" name="Doc" placeholder="000.000.000-00">
+                        <input maxlength="11" type="number" class="form-control" id="inputTel2" _msthash="215"
+                            name="Doc" placeholder="000.000.000-00">
                     </div>
                     <div class="col-md-4">
                         <label for="inputAddress" class="form-label" _msttexthash="133848"
@@ -198,11 +173,11 @@
 
                     <div class="col-12">
 
-                        <button id="btnVoltar" type="button" class="btn btn-outline-light" _msttexthash="77766"
-                        _msthash="222"><i class="fa-solid fa-arrow-left"></i>  Voltar</button>
+                        <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
+                            _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
 
-                        <button type="submit" class="btn btn-outline-primary" _msttexthash="77766"
-                            _msthash="222"><i class="fa-regular fa-floppy-disk"></i>  Salvar</button>
+                        <button type="submit" class="btn btn-outline-primary" _msttexthash="77766" _msthash="222"><i
+                                class="fa-regular fa-floppy-disk"></i> Salvar</button>
 
                         <script>
                             // Captura o botão pelo ID e adiciona o evento de clique
@@ -220,33 +195,34 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-        <script>
+    <script>
+// Função para alternar o tema e salvar no localStorage
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
 // Aplica o tema salvo no localStorage ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
     document.documentElement.setAttribute('data-bs-theme', savedTheme);
 
-    // Sincroniza o botão de alternância com o tema atual (se existir)
+    // Configura o estado do botão com base no tema salvo
     const themeSwitch = document.getElementById('themeSwitch');
     if (themeSwitch) {
         themeSwitch.checked = savedTheme === 'light';
+        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
     }
 });
 
-// Alterna o tema e salva a preferência no localStorage
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme); // Salva o tema no localStorage
-}
 
-
-            // Função para voltar à página inicial
-            document.getElementById('btnVoltar').addEventListener('click', function () {
-                window.location.href = "index.html";
-            });
-        </script>
+        // Função para voltar à página inicial
+        document.getElementById('btnVoltar').addEventListener('click', function () {
+            window.location.href = "index.html";
+        });
+    </script>
 
 </body>
 
