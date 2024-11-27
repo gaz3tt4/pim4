@@ -102,16 +102,20 @@
                 <tbody>
                     {% for venda in vendas %}
                     <tr>
-                        <th scope="row">{{ vendas.vend_in_id }}</th>
-                        <td>{{ vendas.vend_in_idCliente_id.cli_st_nome }}</td>
-                        <td>{{ vendas.vend_dt_venda }}</td>
-                        <td>{{ vendas.vend_vl_total }}</td>
+                        <th scope="row">{{ venda.vend_in_id }}</th>
+                        <td>{{ venda.vend_in_idCliente.cli_st_nome }}</td>
+                        <td>{{ venda.vend_dt_venda }}</td>
+                        <td>{{ venda.vend_vl_total }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         </div>
+        <a href="{% url 'index' %}">
+          <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
+              _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+      </a>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -164,18 +164,19 @@
 
                     <div class="col-12">
 
-                        <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
-                            _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-
+                         <a href="{% url 'showClientes' %}">
+                            <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
+                                _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+                        </a>
                             <button type="submit" class="btn btn-outline-primary" _msttexthash="77766" _msthash="222"><i
                                 class="fa-regular fa-floppy-disk"></i> Salvar</button>
 
-                        <script>
+                        <!-- <script>
                             // Captura o botão pelo ID e adiciona o evento de clique
                             document.getElementById('btnVoltar').addEventListener('click', function () {
                                 window.location.href = "{% url 'showClientes' %}";
                             });
-                        </script>
+                        </script> -->
 
                     </div>
                 </form>
