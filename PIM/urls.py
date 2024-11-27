@@ -23,9 +23,9 @@ from produtos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('clientes.urls')), # rota aponta para o methodo index no arquivo views / clientes
-    path('', include('login.urls')),
-    path('', include('fornecedores.urls')),
-    path('', include('produtos.urls')),
-    path('', include('vendas.urls'))
+    path('', include('login.urls')), 
+    path('clientes/', include('clientes.urls')), # rota aponta para o methodo index no arquivo views / clientes
+    path('fornecedores/', include('fornecedores.urls')),
+    path('produtos/', include('produtos.urls')),
+    path('vendas/', include('vendas.urls'))
 ]

@@ -50,15 +50,15 @@ def storeFornecedor(request):
             messages.error(request, "Nome inválido.")
     return render(request, 'cadastroFornecedor.html')
 
-def edit(request, pk):
-    fornecedor = get_object_or_404(Fornecedor, fnr_in_id=pk)
+def edit(request, id_fnr):
+    fornecedor = get_object_or_404(Fornecedor, pk=id_fnr)
     context = {
         'fornecedor': fornecedor
     }
     return render(request, 'editFornecedor.html', context)
 
-def update(request, pk):
-    fornecedor = get_object_or_404(Fornecedor, fnr_in_id=pk)
+def update(request, id_fnr):
+    fornecedor = get_object_or_404(Fornecedor, pk=id_fnr)
     fornecedor.Fornecedor = Fornecedor
     if request.method == 'POST':
         fornecedor.fnr_st_nome = request.POST.get('Nome')
@@ -71,7 +71,7 @@ def update(request, pk):
         fornecedor.save()
     return redirect('showFornecedor')
 
-def delete(request, pk):
-    cliente = get_object_or_404(Fornecedor, fnr_in_id=pk)
+def delete(request, id_fnr):
+    cliente = get_object_or_404(Fornecedor, pk=id_fnr)
     cliente.delete()
     return ShowFornecedor(request)
