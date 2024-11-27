@@ -105,4 +105,5 @@ def updateCliente(request, id_cli):
 def deleteCliente(request, id_cli):
     cliente = get_object_or_404(Cliente, pk=id_cli)
     cliente.delete()
+    messages.success(request, "Cliente excluído com sucesso.")
     return ShowClientes(request)
