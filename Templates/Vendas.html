@@ -24,45 +24,24 @@
         font-style: normal;
         color: #ffffff;
       }
-
-      /* Style navbar */
-  .navbar-custom {
-    background-color: #0080ff; 
-    color: white;
-  }
-
-  .navbar-custom .navbar-brand,
-  .navbar-custom .navbar-text {
-    color: rgb(255, 0, 0);
-  }
-
-  .navbar-custom .navbar-brand img {
-    filter: brightness(100%);
-  }
-
-  .navbar-custom .fazendola-text {
-    color: #00e900;
-    font-size: 1.5rem;
-    font-family: "Arial", sans-serif;
-  }
     </style>
   </head>
 
   <body>
-<!-- Navbar -->
-<nav class="navbar navbar-custom">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <!-- Logo da GreenWood -->
-        <span class="fazendola-text">Fazendola</span>
-      </a>
-      <!-- Área do usuário -->
-      <span class="navbar-text ms-auto d-flex align-items-center">
-          <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
-          <span style="font-size: 1.2rem;">Fazendeiro ADMIN</span>
-      </span>
-  </div>
-</nav>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img src="assets/FarmVille Logo sem fundo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top" />
+          <span class="fazendola-text">Fazendola</span>
+        </a>
+        <span class="navbar-text ms-auto d-flex align-items-center">
+          <i class="fa-solid fa-circle-user" style="color: #ffffff; font-size: 1.5rem; margin-right: 0.5rem;"></i>
+          <!-- Ajuste o tamanho do ícone aqui -->
+          <span style="color: #ffffff; font-size: 1.2rem;">Fazendeiro ADMIN</span>
+          <!-- Ajuste o tamanho do texto aqui -->
+        </span>
+      </div>
+    </nav>
     <br />
 
     <section class="py-4 container">
@@ -71,16 +50,15 @@
       <div class="row">
         <div class="col-md-2">
           <label for="inputNome4" class="form-label">Cliente</label>
-          <select name="IdClienteSelect" class="form-control" id="slectProd" required>
+          <select name="IdCliente" class="form-control" id="slectProd" required>
             {% for cliente in clientes %}
               <option value="{{ cliente.cli_in_id }}">{{ cliente.cli_st_nome }}</option>
-              <input type="number" name="IdCliente" value="{{ cliente.cli_in_id }}" style="display: none">
             {% endfor %}
           </select>
         </div>
         <div class="col-md-2">
           <label for="inputDate" class="form-label">Data da Venda</label>
-          <input type="date" class="form-control" id="inputDate" name="DataVenda" required />
+          <input type="date" class="form-control" id="inputDate" name="DataCompra" required />
         </div>
       </div>
     </section>
@@ -94,20 +72,19 @@
                     <div class="row g-3 align-items-center venda-item">
                       <div class="col-md-2">
                         <label for="inputNome4" class="form-label">Produto</label>
-                        <select name="Produto" class="form-control" id="selectProd">
+                        <select name="Produto[]" class="form-control">
                           {% for plantar in lista_estoque %}
-                          <option  value="{{ plantar.plan_in_id }}|{{ plantar.plan_in_idProduto.id }}" data-qtn="{{ plantar.plan_in_quantidade }}">{{ plantar.plan_in_idProduto.est_st_nome }}#{{ plantar.plan_in_id }}</option>
+                          <option value="{{ plantar.plan_in_id }}|{{ plantar.plan_in_idProduto.id }}">{{ plantar.plan_in_idProduto.est_st_nome }}#{{ plantar.plan_in_id }}</option>
                           {% endfor %}
                         </select>
                       </div>
                       <div class="col-md-2">
                         <label for="inputAddress" class="form-label">Quantidade</label>
-                        <input type="number" class="form-control" id="inputQuantidade" placeholder="10kg"
-                            _mstplaceholder="126607" _msthash="213" name="quantidade" min="1"  required>
+                        <input type="number" class="form-control Quantidade" placeholder="10kg" name="Quantidade[]" />
                       </div>
                       <div class="col-md-2">
                         <label for="inputTel2" class="form-label">Valor</label>
-                        <input type="text" class="form-control Preco" placeholder="R$10,00" name="Preco" />
+                        <input type="text" class="form-control Preco" placeholder="R$10,00" name="Preco[]" />
                       </div>
                       <div class="col-md-1 d-flex align-items-center">
                         <button type="button" class="btn btn-danger excluir-item" style="margin-top: 30px;">
@@ -119,7 +96,7 @@
 
                   <div class="col-12 mt-3 text-end">
                     <label for="valorTotal" class="form-label fw-bold">Valor Total:</label>
-                    <span id="valorTotal" class="fw-bold">R$ 0,00</span>
+                    <span id="valorTotal" class="fw-bold">R$0,00</span>
                   </div>
                 
                   <div class="col-12 mt-3">
@@ -129,7 +106,7 @@
                     <button type="submit" class="btn btn-outline-primary">
                       <i class="fa-regular fa-floppy-disk"></i> Salvar
                     </button>
-                    <button id="btnAdicionarVenda" type="button" class="btn btn-outline-warning">
+                    <button id="btnAdicionarVenda" type="button" class="btn btn-outline-primary">
                       <i class="fa-regular fa-plus"></i> Adicionar
                     </button>
                   </div>
@@ -137,6 +114,7 @@
 
 
               {% comment %} <script>
+                            // Captura o botão pelo ID e adiciona o evento de clique
                             document.getElementById('btnVoltar').addEventListener('click', function () {
                                 window.location.href = "{% url 'Store' %}";
                             });
@@ -148,34 +126,7 @@
     </section>
 
     <script>
-// Função para alternar o tema e salvar no localStorage
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-bs-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-}
-
-// Aplica o tema salvo no localStorage ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão: 'dark'
-    document.documentElement.setAttribute('data-bs-theme', savedTheme);
-
-    // Configura o estado do botão com base no tema salvo
-    const themeSwitch = document.getElementById('themeSwitch');
-    if (themeSwitch) {
-        themeSwitch.checked = savedTheme === 'light';
-        themeSwitch.addEventListener('change', toggleTheme); // Configura o evento de mudança
-    }
-});
-
-
-      document.getElementById('selectProd').addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const selectQuantcidade = selectedOption.getAttribute('data-qtn');
-        document.getElementById('inputQuantidade').max = selectQuantcidade ||'';
-      });
-      document.getElementById('selectProd').dispatchEvent(new Event('change'));
+      document.getElementById('btnAdicionarVenda').disabled=true;
 
       document.addEventListener('DOMContentLoaded', () => {
         const itensVenda = document.getElementById('itensVenda');
