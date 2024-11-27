@@ -109,21 +109,24 @@
                     <button id="btnAdicionarVenda" type="button" class="btn btn-outline-primary">
                       <i class="fa-regular fa-plus"></i> Adicionar
                     </button>
+                    <a href="{% url 'showVendas'%}" class="btn btn-outline-primary"> list Vendas</a>
                   </div>
                 </form>
-
-
-              {% comment %} <script>
-                            // Captura o botão pelo ID e adiciona o evento de clique
-                            document.getElementById('btnVoltar').addEventListener('click', function () {
-                                window.location.href = "{% url 'Store' %}";
-                            });
-                        </script> {% endcomment %}
+                
+                
+                {% comment %} <script>
+                  // Captura o botão pelo ID e adiciona o evento de clique
+                  document.getElementById('btnVoltar').addEventListener('click', function () {
+                    window.location.href = "{% url 'Store' %}";
+                  });
+                  </script> {% endcomment %}
             </div>
           </form>
         </div>
       </div>
     </section>
+
+    
 
     <script>
       document.getElementById('btnAdicionarVenda').disabled=true;

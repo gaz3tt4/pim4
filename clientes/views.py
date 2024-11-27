@@ -11,14 +11,14 @@ from .utils import validar_nome, edita_cliente, validar_doc, sanitiza_telefone, 
 # Create your views here.
 # função index retorna a viwe index html pasta template
 
-# usuario = 'root'
-# senha = 'pim'
-# host = '34.133.125.23'
-# banco = 'PimT'
+usuario = 'root'
+senha = 'pim'
+host = '34.133.125.23'
+banco = 'PimT'
 
-# connection_string = f'mysql+mysqlconnector://{usuario}:{senha}@{host}/{banco}'
+connection_string = f'mysql+mysqlconnector://{usuario}:{senha}@{host}/{banco}'
 
-# engine = create_engine(connection_string)
+engine = create_engine(connection_string)
 
 def index(request):
     return render(request, 'showClientes.html')
@@ -117,20 +117,20 @@ def deleteCliente(request, id_cli):
     messages.success(request, "Cliente excluído com sucesso.")
     return ShowClientes(request)
 
-# def gerar_relatorio(request):
+def gerar_relatorio(request):
 
-#     query = 'SELECT * FROM clientes_cliente'
+    query = 'SELECT * FROM clientes_cliente'
 
-#     df = pd.read_sql(query, engine)
+    df = pd.read_sql(query, engine)
 
-#     # Criando a resposta HTTP com o tipo MIME adequado para arquivos Excel
-#     response = HttpResponse(
-#         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#     )
-#     response['Content-Disposition'] = 'attachment; filename="relatorio_clientes.xlsx"'
+    # Criando a resposta HTTP com o tipo MIME adequado para arquivos Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="relatorio_clientes.xlsx"'
 
-#     # Usando pandas para escrever o DataFrame no arquivo Excel diretamente na resposta HTTP
-#     with pd.ExcelWriter(response, engine='openpyxl') as writer:
-#         df.to_excel(writer, index=False, sheet_name='Clientes')  # Não incluir o índice na planilha
+    # Usando pandas para escrever o DataFrame no arquivo Excel diretamente na resposta HTTP
+    with pd.ExcelWriter(response, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Clientes')  # Não incluir o índice na planilha
 
-#     return response
+    return response

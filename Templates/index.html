@@ -160,6 +160,10 @@
       <div class="col-md-12">
         <div class="border border-2 rounded p-4">
           <h3 class="text-center" style="color: #198754; font-size: 2rem;">Produção</h3>
+          <a href="{% url 'gerar_relatorioProd'%}">
+            <button  type="button" class="btn btn-outline-secondary" _msttexthash="77766"
+              _msthash="222"> Relatorio</button>
+          </a>
           {% for dado in Dados%}
           <div class="col-md-12">
             <label for="inputNome4" class="form-label" _msttexthash="58058" _msthash="210">{{ dado.plan_in_idProduto }}</label>

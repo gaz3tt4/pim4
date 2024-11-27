@@ -122,7 +122,6 @@
                         <a href="{% url 'deleteFornecedor' fornecedor.fnr_in_id %}">
                             <button type="button" class="btn btn-outline-danger"> <i class="fa-regular fa-trash-can"></i></button>
                         </a>
-
                     </td>
                     </tr>
                     {% endfor %}
@@ -133,8 +132,10 @@
             <button id="btnVoltar" type="button" class="btn btn-outline-secondary" _msttexthash="77766"
                 _msthash="222"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
         </a>
+        <a href="{% url 'gerar_relatorio' %}" class="btn btn-outline-secondary"}">Relatorio</a>
 
         <button id= "btnAdd" type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Filtrar -->
+        
 
         <script>
             // Redirecionamento para cadastro ao clicar no botão "Cadastrar"

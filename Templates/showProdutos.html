@@ -144,7 +144,7 @@
             </a>
     <button id="btnAdd" type="button" class="btn btn-outline-secondary"> <i class="fa-solid fa-file-import"></i>  Cadastrar</button><!-- Botao Cadastrar -->    
     <button id="btnCompra" type="button" class="btn btn-outline-warning"> <i class="fa-solid fa-cart-shopping"></i> Comprar</button><!-- Botao Comprar -->
-
+    <a href="{% url 'gerar_relatorio' %}" class="btn btn-outline-secondary"> Relatorio</a>
     <script>
         document.getElementById('btnCompra').addEventListener('click', function () {
         window.location.href = "{% url 'comprarInsumo' %}";

@@ -14,4 +14,6 @@ urlpatterns = [
     path('delete/<int:pk>/', views.deleteProdutos, name='deleteProdutos'),
     path('Plantar/', views.showPlantar, name='Plantar'),
     path('storePlantar/', views.storePlantar, name='storePlantar'),	
+    path('gerar-relatorio/', views.gerar_relatorio, name='gerar_relatorio'),
+    path('gerar-relatorioProd/', views.gerar_relatorioProd, name='gerar_relatorioProd'),
 ]

@@ -7,6 +7,19 @@ from .models import Vendas, VendasProdutos
 from produtos.models import Compra, Plantar
 from clientes.models import Cliente
 from fornecedores.models import Fornecedor
+from django.db.models import F, Func, Value, CharField
+from django.db.models.functions import Concat
+from sqlalchemy import create_engine
+import pandas as pd
+
+usuario = 'root'
+senha = 'pim'
+host = '34.133.125.23'
+banco = 'PimT'
+
+connection_string = f'mysql+mysqlconnector://{usuario}:{senha}@{host}/{banco}'
+
+engine = create_engine(connection_string)
 
 def ListarVendas(request):
     vendas = Vendas.objects.all()
@@ -71,6 +84,24 @@ def salvarVenda(request):
         return redirect('showVendas') 
 
     return redirect('Index')
+
+def gerar_relatorio(request):
+
+    query = 'SELECT * FROM vendas_vendas'
+
+    df = pd.read_sql(query, engine)
+
+    # Criando a resposta HTTP com o tipo MIME adequado para arquivos Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="relatorio_vendas.xlsx"'
+
+    # Usando pandas para escrever o DataFrame no arquivo Excel diretamente na resposta HTTP
+    with pd.ExcelWriter(response, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Clientes')  # Não incluir o índice na planilha
+
+    return response
 
 
 # def Vendas(request):

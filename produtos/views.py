@@ -6,26 +6,18 @@ from fornecedores.models import Fornecedor
 from datetime import date
 from datetime import datetime
 from django.db.models import F, Func, Value, CharField
+from django.db.models.functions import Concat
+from sqlalchemy import create_engine
+import pandas as pd
 
-# index carrega a template de produção, mostra o progresso da plantação
-# def index(request):
-#     plantas = Plantar.objects.all()
-#     plant_in_id_prod = list(plantas.values_list('plan_in_idProduto', flat=True))
-#     plantios = list(plantas.values_list('plan_in_id', flat=True))
-#     # plantasid = plantas.__repr__('plan_in_id')
-#     produtos = Produto.objects.filter(est_in_id__in=plant_in_id_prod).values_list('est_st_nome', flat=True)
-#     Plantado = get_object_or_404(Plantar, plan_in_id__in=plantios)
-#     dtPlantar = Plantado.plan_dt_plantar
-#     dtColher = Plantado.plan_dt_colher
-#     progress = percentual(dtPlantar, dtColher)
-    
+usuario = 'root'
+senha = 'pim'
+host = '34.133.125.23'
+banco = 'PimT'
 
-#     context = {
-#         'plantas': plantas
-#     }
-#     print(progress, dtPlantar, dtColher)
-#     return render(request, 'index.html', context)
+connection_string = f'mysql+mysqlconnector://{usuario}:{senha}@{host}/{banco}'
 
+engine = create_engine(connection_string)
 
 def index(request):
     plantas = Plantar.objects.all()
@@ -220,3 +212,39 @@ def percentual(DtPlantio, DtColheita):
     percentual = int(percentual)
 
     return percentual
+
+def gerar_relatorio(request):
+
+    query = 'SELECT * FROM produtos_compra'
+
+    df = pd.read_sql(query, engine)
+
+    # Criando a resposta HTTP com o tipo MIME adequado para arquivos Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="relatorio_compras.xlsx"'
+
+    # Usando pandas para escrever o DataFrame no arquivo Excel diretamente na resposta HTTP
+    with pd.ExcelWriter(response, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Clientes')  # Não incluir o índice na planilha
+
+    return response
+
+def gerar_relatorioProd(request):
+
+    query = 'SELECT * FROM produtos_produto'
+
+    df = pd.read_sql(query, engine)
+
+    # Criando a resposta HTTP com o tipo MIME adequado para arquivos Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename="relatorio_plantar.xlsx"'
+
+    # Usando pandas para escrever o DataFrame no arquivo Excel diretamente na resposta HTTP
+    with pd.ExcelWriter(response, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Clientes')  # Não incluir o índice na planilha
+
+    return response
