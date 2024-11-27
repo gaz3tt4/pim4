@@ -9,4 +9,5 @@ urlpatterns = [
     path('edit/<int:id_cli>', views.editCliente, name='editClientes'),
     path('update/<int:id_cli>', views.updateCliente, name='updateClientes'),
     path('delete/<int:id_cli>', views.deleteCliente, name='deleteClientes'),
+    path('gerar-relatorio/', views.gerar_relatorio, name='gerar_relatorio'),
 ]

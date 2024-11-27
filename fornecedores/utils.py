@@ -48,9 +48,9 @@ def validar_doc(tipo, doc, request):
 
 def validar_endereco(endereco):
 
-    padrao = r"^(Rua|Avenida|Travessa|Alameda|Praça|Largo|Rodovia|Estrada|Beira-Mar|Passagem|Viaduto|Ponte|Caminho|Conjunto|Setor|Zona)\s+[A-Za-zà-úÀ-Ú\s]{1,55}\s+\d{1,5}$"
+    # padrao = r"^(Rua|Avenida|Travessa|Alameda|Praça|Largo|Rodovia|Estrada|Beira-Mar|Passagem|Viaduto|Ponte|Caminho|Conjunto|Setor|Zona)\s+[A-Za-zà-úÀ-Ú\s]{1,55}\s+\d{1,5}$"
 
-    if re.match(padrao, endereco): return True
+    if re.match('^[A-Za-zÀ-ÿ\s]+,\s*\d{1,5}$', endereco): return True
 
     else: return False
 
