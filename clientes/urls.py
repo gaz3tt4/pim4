@@ -6,7 +6,7 @@ urlpatterns = [
     path('showClientes/', views.ShowClientes, name='showClientes'),
     path('cadastroClientes', views.cadastroClientes, name='cadastroClientes'),
     path('store', views.storeCliente, name='store'),# rota utilizada para gravar os dados no banco
-    path('edit/<int:pk>', views.editCliente, name='editClientes'),
-    path('update/<int:pk>', views.updateCliente, name='updateClientes'),
-    path('delete/<int:pk>', views.deleteCliente, name='deleteClientes'),
+    path('edit/<int:id_cli>', views.editCliente, name='editClientes'),
+    path('update/<int:id_cli>', views.updateCliente, name='updateClientes'),
+    path('delete/<int:id_cli>', views.deleteCliente, name='deleteClientes'),
 ]

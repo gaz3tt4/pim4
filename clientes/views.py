@@ -5,7 +5,7 @@ from clientes.models import Cliente
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
-from .utils import validar_nome, validar_doc, validar_endereco, validar_cidade, registra_cliente_no_banco
+from .utils import validar_nome, edita_cliente, validar_doc, sanitiza_telefone, validar_email, validar_telefone, validar_endereco, validar_cidade, registra_cliente_no_banco
 # Create your views here.
 # função index retorna a viwe index html pasta template
 
@@ -37,46 +37,72 @@ def storeCliente(request):
                     estado = request.POST.get('Estado')
                     cidade = request.POST.get('Cidade')
                     if validar_cidade(cidade, estado):
-                        telefone = request.POST.get('Telefone')
-                        email = request.POST.get('Email') 
-                        messages.success(request, "Cliente cadastrado com sucesso.")
-                        registra_cliente_no_banco(nome, doc, tipo, endereco, cidade, estado, telefone, email)
-                        return redirect('showClientes')
+                        telefone = sanitiza_telefone(request.POST.get('Telefone'))
+                        if validar_telefone(telefone):
+                            email = request.POST.get('Email')
+                            if validar_email(email):
+                                messages.success(request, "Cliente cadastrado com sucesso.")
+                                registra_cliente_no_banco(nome, doc, tipo, endereco, cidade, estado, telefone, email)
+                                return redirect('showClientes')
+                            else:
+                                messages.error(request, "Email inválido")
+                        else:
+                            messages.error(request, "Telefone inválido.")
                     else:
                         messages.error(request, "Cidade inexistente.")
-                    
                 else:
                     messages.error(request, "Endereço inválido.")
             else:
                 pass # Messages já são passadas na função validar_doc
         else:
             messages.error(request, "O nome deve conter somente caracteres.")
-    return render(request, 'cadastroClientes.html') 
+    return render(request, 'cadastroClientes.html')
 
-def editCliente(request, pk):
-    cliente = get_object_or_404(Cliente, cli_in_id=pk)
+def editCliente(request, id_cli):
+    cliente = get_object_or_404(Cliente, pk=id_cli)
     context = {
         'cliente': cliente
     }
-    
     return render(request, 'editClientes.html', context)
 
-def updateCliente(request, pk):
-    cliente = get_object_or_404(Cliente, cli_in_id=pk)
-    cliente.Cliente = Cliente
+def updateCliente(request, id_cli):
+    cliente = get_object_or_404(Cliente, pk=id_cli)
     if request.method == 'POST':
-        cliente.cli_st_nome = request.POST.get('Nome')
-        cliente.cli_st_tipo = request.POST.get('Tipo')
-        cliente.cli_st_doc = request.POST.get('Doc')   
-        cliente.cli_st_endereco = request.POST.get('Endereco')
-        cliente.cli_st_cidade = request.POST.get('Cidade')
-        cliente.cli_st_estado = request.POST.get('Estado')
-        cliente.cli_st_telefone = request.POST.get('Telefone')
-        cliente.cli_st_email = request.POST.get('Email')
-        cliente.save()
-    return redirect('showClientes')
+        nome = request.POST.get('Nome')
+        if validar_nome(nome):
+            doc = request.POST.get('Doc')
+            tipo = request.POST.get('Tipo')
+            if validar_doc(tipo, doc, request):
+                endereco = request.POST.get('Endereco')
+                if validar_endereco(endereco):
+                    cidade = request.POST.get('Cidade')
+                    estado = request.POST.get('Estado')
+                    if validar_cidade(cidade, estado):
+                        telefone = sanitiza_telefone(request.POST.get('Telefone'))
+                        if validar_telefone(telefone):
+                            email = request.POST.get('Email')
+                            if validar_email(email):
+                                edita_cliente(cliente, nome, doc, tipo, endereco, cidade, estado, telefone, email)
+                                messages.success(request, "Cliente editado com sucesso.")
+                                return redirect('showClientes')
+                            else:
+                                messages.error(request, "Email inválido.")
+                        else:
+                            messages.error(request, "Telefone inválido")
+                    else:
+                        messages.error(request, "Cidade inexistente.")
+                else:
+                    messages.error(request, "Endereço inválido.")
+            else:
+                pass
+        else:
+            messages.error(request, "Nome inválido.")
+    context = {
+        'cliente' : cliente
+    }
+    return render(request, 'editClientes.html', context)
 
-def deleteCliente(request, pk):
-    cliente = get_object_or_404(Cliente, cli_in_id=pk)
+def deleteCliente(request, id_cli):
+    cliente = get_object_or_404(Cliente, pk=id_cli)
     cliente.delete()
-    return redirect('showClientes')
+    return ShowClientes(request)
