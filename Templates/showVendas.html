@@ -73,8 +73,8 @@
                       <div class="col-md-2">
                         <label for="inputNome4" class="form-label">Produto</label>
                         <select name="Produto[]" class="form-control">
-                          {% for compra in lista_estoque %}
-                          <option value="{{ compra.comp_in_id }}|{{ compra.comp_in_idProduto.id }}">{{ compra.comp_in_idProduto.est_st_nome }}#{{ compra.comp_in_id }}</option>
+                          {% for plantar in lista_estoque %}
+                          <option value="{{ plantar.plan_in_id }}|{{ plantar.plan_in_idProduto.id }}">{{ plantar.plan_in_idProduto.est_st_nome }}#{{ plantar.plan_in_id }}</option>
                           {% endfor %}
                         </select>
                       </div>
@@ -127,67 +127,66 @@
 
     <script>
 
+      document.addEventListener('DOMContentLoaded', () => {
+        const itensVenda = document.getElementById('itensVenda');
+        const btnAdicionarVenda = document.getElementById('btnAdicionarVenda');
+      
         function excluirItem(event) {
-            const item = event.target.closest('.venda-item'); // Encontrar o item mais próximo do botão
-            if (item) {
-              item.remove(); // Remover o item
-              atualizarValorTotal(); // Recalcular o total após a exclusão
-            }
+          const item = event.target.closest('.venda-item');
+          if (item) {
+            item.remove();
+            atualizarValorTotal();
           }
-          
-          // Adicionando o evento de clique ao botão de excluir
-          document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('excluir-item')) {
-              excluirItem(event);
+        }
+      
+        function atualizarValorTotal() {
+          let total = 0;
+      
+          document.querySelectorAll('.venda-item').forEach(item => {
+            const quantidade = parseFloat(item.querySelector('.Quantidade').value) || 0;
+            const preco = parseFloat(formatarPrecoParaNumero(item.querySelector('.Preco').value)) || 0;
+            total += quantidade * preco;
+          });
+      
+          document.getElementById('valorTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+      
+        function formatarPrecoParaNumero(preco) {
+          return preco.replace('R$', '').replace('.', '').replace(',', '.');
+        }
+      
+        function adicionarNovoItem() {
+          const novaLinha = document.querySelector('.venda-item').cloneNode(true);
+      
+          novaLinha.querySelectorAll('input, select').forEach(input => {
+            if (input.tagName === 'INPUT') {
+              input.value = '';
             }
           });
-          
-          // Função para atualizar o valor total (já existe no seu código)
-          function atualizarValorTotal() {
-            let total = 0;
-          
-            // Itera sobre todos os itens e calcula o total
-            document.querySelectorAll('.venda-item').forEach(item => {
-              const quantidade = parseFloat(item.querySelector('.Quantidade').value) || 0;
-              const preco = parseFloat(item.querySelector('.Preco').value.replace('R$', '').replace(',', '.')) || 0;
-              total += quantidade * preco;
-            });
-          
-            // Atualiza a label de valor total
-            document.getElementById('valorTotal').textContent = `R$${total.toFixed(2).replace('.', ',')}`;
+      
+          itensVenda.appendChild(novaLinha);
+          atualizarValorTotal();
+        }
+      
+        // Delegação de eventos para excluir itens
+        itensVenda.addEventListener('click', function (event) {
+          if (event.target.classList.contains('excluir-item')) {
+            excluirItem(event);
           }
-          
-          // Garantir que os campos de quantidade e preço disparem o cálculo quando alterados
-          document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.Quantidade, .Preco').forEach(input => {
-              input.addEventListener('input', atualizarValorTotal);
-            });
-          });
-          
-          document.getElementById('btnAdicionarVenda').addEventListener('click', function () {
-            const itensVenda = document.getElementById('itensVenda');
-            const novaLinha = document.querySelector('.venda-item').cloneNode(true);
-          
-            // Limpa os campos da nova linha clonada
-            novaLinha.querySelectorAll('input, select').forEach(input => {
-              if (input.tagName === "INPUT") {
-                input.value = "";
-              }
-            });
-          
-            // Adiciona a nova linha ao container
-            itensVenda.appendChild(novaLinha);
-          
-            // Adiciona o evento de input para os novos campos
-            novaLinha.querySelectorAll('.Quantidade, .Preco').forEach(input => {
-              input.addEventListener('input', atualizarValorTotal);
-            });
-          
-            // Adiciona o evento de excluir no botão
-            novaLinha.querySelector('.excluir-item').addEventListener('click', excluirItem);
-          
-            atualizarValorTotal(); // Atualiza o total imediatamente
-          });
+        });
+      
+        // Adiciona um novo item ao clicar no botão
+        btnAdicionarVenda.addEventListener('click', adicionarNovoItem);
+      
+        // Atualiza o total em tempo real para todos os itens
+        itensVenda.addEventListener('input', function (event) {
+          if (event.target.classList.contains('Quantidade') || event.target.classList.contains('Preco')) {
+            atualizarValorTotal();
+          }
+        });
+      
+        atualizarValorTotal(); // Calcula o total inicial
+      });
           
           document.getElementById('btnVoltar').addEventListener('click', function () {
             window.location.href = "{% url 'index' %}";
