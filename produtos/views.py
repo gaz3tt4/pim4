@@ -5,27 +5,75 @@ from django.http import HttpResponse
 from fornecedores.models import Fornecedor
 from datetime import date
 from datetime import datetime
+from django.db.models import F, Func, Value, CharField
 
 # index carrega a template de produção, mostra o progresso da plantação
+# def index(request):
+#     plantas = Plantar.objects.all()
+#     plant_in_id_prod = list(plantas.values_list('plan_in_idProduto', flat=True))
+#     plantios = list(plantas.values_list('plan_in_id', flat=True))
+#     # plantasid = plantas.__repr__('plan_in_id')
+#     produtos = Produto.objects.filter(est_in_id__in=plant_in_id_prod).values_list('est_st_nome', flat=True)
+#     Plantado = get_object_or_404(Plantar, plan_in_id__in=plantios)
+#     dtPlantar = Plantado.plan_dt_plantar
+#     dtColher = Plantado.plan_dt_colher
+#     progress = percentual(dtPlantar, dtColher)
+    
+
+#     context = {
+#         'plantas': plantas
+#     }
+#     print(progress, dtPlantar, dtColher)
+#     return render(request, 'index.html', context)
+
+
 def index(request):
     plantas = Plantar.objects.all()
     plant_in_id_prod = list(plantas.values_list('plan_in_idProduto', flat=True))
-    id_plantas = list(plantas.values_list('plan_in_id', flat=True))
-    produtos = Produto.objects.filter(est_in_id__in=plant_in_id_prod).values_list('est_st_nome', flat=True)
-    dtPlantar = Plantar.objects.filter(plan_in_id__in=id_plantas).values_list('plan_dt_plantar', flat=True)
-   
-    # dtPlantar = set(dtPlantar)
 
-    dtColher = Plantar.objects.filter(plan_in_id__in=id_plantas).values_list('plan_dt_colher', flat=True) 
-    # dtColher = set(dtColher)
-    # progress = percentual(dtPlantar, dtColher)
+    plant_id = list(plantas.values_list('plan_in_id', flat=True))
     
+    # Obtendo os produtos relacionados
+    #produtos = Produto.objects.filter(est_in_id__in=plant_in_id_prod).values_list('est_st_nome', flat=True)
+    produtos = Produto.objects.all()
+    #produtos_id = produtos.values_list('plan_in_idProduto', flat=True)
+    #produtos_dict = {produto.est_in_id: produto.est_st_nome for produto in produtos_id}
 
+    # Armazenar todos os objetos Plantar
+    plantios = Plantar.objects.filter(plan_in_id__in=plant_id)
+    
+    
+    # Iterar sobre cada objeto Plantar
+    Dados = []
+    for Plantado in plantios:
+        plan_in_idProduto = Plantado.plan_in_idProduto
+        plan_dt_plantar = Plantado.plan_dt_plantar
+        plan_dt_colher = Plantado.plan_dt_colher
+        plan_in_id = Plantado.plan_in_id
+        #est_st_nome = produtos_dict.get(Plantado.plan_in_idProduto)
+        # plant_in_id_produto = Plantado.plan_in_idProduto
+
+        progress = percentual(plan_dt_plantar, plan_dt_colher)
+        Dados.append({
+            'progress': progress,
+            'plan_dt_plantar': plan_dt_plantar,
+            'plan_dt_colher': plan_dt_colher,
+            'plan_in_id': plan_in_id,
+            'plan_in_idProduto': plan_in_idProduto
+            #'est_st_nome': est_st_nome
+            
+        })
+    
     context = {
-        'plantas': plantas
+        'plantas': plantas,
+        'produtos': produtos,
+        'Dados': Dados,
     }
-    print( dtPlantar, dtColher)
+    
+    # Imprimindo para debug
+    print(Dados)
     return render(request, 'index.html', context)
+
 
 
 def ShowProdutos(request):
@@ -166,8 +214,9 @@ def calculaPrazo(DtPlantio, DtColheita):
 def percentual(DtPlantio, DtColheita):
     prazo = calculaPrazo(DtPlantio, DtColheita)
     DtHj = date.today()
-    somaPrazo = DtColheita - DtHj
+    somaPrazo = DtHj - DtPlantio
     somaPrazo = int(somaPrazo.days)
     percentual = (somaPrazo * 100) / prazo
+    percentual = int(percentual)
 
     return percentual
