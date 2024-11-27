@@ -21,7 +21,7 @@ connection_string = f'mysql+mysqlconnector://{usuario}:{senha}@{host}/{banco}'
 engine = create_engine(connection_string)
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'showClientes.html')
 
 def ShowClientes(request):
     clientes = Cliente.objects.all()

@@ -6,6 +6,8 @@ from django.contrib import messages
 from .utils import validar_nome, validar_doc, edita_fornecedor, validar_endereco, validar_cidade, sanitiza_telefone, validar_telefone, validar_email, registra_fornecedor_no_banco
 # Create your views here.
 
+def index(request):
+    return redirect('index')
 
 def ShowFornecedor(request):
     fornecedores = Fornecedor.objects.all()

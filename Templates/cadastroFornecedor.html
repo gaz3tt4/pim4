@@ -59,7 +59,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'index' %}">
           <!-- Logo da GreenWood -->
           <span class="fazendola-text">Fazendola</span>
         </a>
@@ -228,10 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-        // Função para voltar à página inicial
-        document.getElementById('btnVoltar').addEventListener('click', function () {
-            window.location.href = "index.html";
-        });
+        // // Função para voltar à página inicial
+        // document.getElementById('btnVoltar').addEventListener('click', function () {
+        //     window.location.href = "index.html";
+        // });
     </script>
 
 </body>
